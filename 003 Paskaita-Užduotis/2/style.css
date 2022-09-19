@@ -1,0 +1,7 @@
+.forma{
+    display: grid;
+}
+.pirmasSkaicius{
+    display: inline-block;
+    background-color: aqua;
+}
