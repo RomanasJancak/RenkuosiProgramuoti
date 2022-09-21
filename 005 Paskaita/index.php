@@ -28,9 +28,17 @@
     //tikriname ar mygtukas paspaustas
     if(isset($_POST["upload"])) {
         $file_name = $_POST["file_name"];
+ 
         $file = $_FILES["file"];
+        //echo $file['name'];
+        if($file["size"] > 1048576){
+            echo "Per didelis failas";
+        }elseif((explode(".", $file["name"])[1] )!= "pdf"){
+            echo "Netinkamas failo formatas turi buti pdf";
+        }else{
 
-         var_dump($file);
+           
+         //var_dump($file);
 
         // failo aplankas
         $file_dir = "uploads/";
@@ -55,9 +63,9 @@
         //explode - padalina stringa i masyva pagal nurodyta simboli
         //parduotuve.sql per taskiuka -> ["parduotuve", "sql"]
         //kiausinis, obuolys, kriause, limonadas -> ["kiausinis", "obuolys", "kriause", "limonadas"]
-        $file_name_array = explode(".", $file["name"]);
+        //$file_name_array = explode(".", $file["name"]);
         //failo pletini
-        $file_extension =  $file_name_array[1];
+        //$file_extension =  $file_name_array[1];
         
         // $random_words = ["a","b","c","d","e","f","g"];
 
@@ -70,20 +78,21 @@
         //     $random_string .= $random_words[$random_number];
 
         // }
-        $time = time();
+       // $time = time();
             //time dabartinis laikas sekundemis nuo 1970
-        $random_string = $file_name_array[0].$time;
+       // $random_string = $file_name_array[0].$time;
 
 
-        $file_name_generated = $random_string .".".$file_extension;
+        //$file_name_generated = $random_string .".".$file_extension;
 
 
-        var_dump($file_name_generated); 
+        //var_dump($file_name_generated); 
 
 
 
 
-         $file_path = $file_dir . $file_name_generated;
+        // $file_path = $file_dir . $file_name_generated;
+         $file_path = $file_dir . $file['name'];
 
          //leisti ikelti tik jpg
          //apriboti ikelimo failo didi
@@ -101,7 +110,7 @@
 
         //  var_dump( $file_path);
     }
-
+    }
 
 ?>
 
