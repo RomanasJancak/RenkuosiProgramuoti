@@ -7,12 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-<form method="get" action="get.php">
-        <input type="text" id="Skaicius1" name="skaicius1">
-        <input type="text" id="Skaicius2" name="skaicius2">
-        <input type="text" id="aritmetinisVeiksmas" name="aritmetinisVeiksmas">
-        <button type="submit">Spausk</button>
-    </form>
+<form action="/action_page.php">
+  <label for="cars">Choose a car:</label>
+  <select id="cars" name="cars" size="3">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select><br><br>
+  <input type="submit">
+</form>
 </form>
 </body>
 </html>
