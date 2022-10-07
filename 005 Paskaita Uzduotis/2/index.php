@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+if(isset($_COOKIE["Arprisijunges"])){
+    if($_COOKIE["Arprisijunges"] == 1){
+        header("Location: /RenkuosiProgramuoti/005%20Paskaita%20Uzduotis/2/manopaskyra.php");   
+        //exit();
+    }
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +14,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="post.php" method="post">
+<form action="post.php" method="post">
         <input type="text" name="login" id="">
         <input type="password" name="password" id="">
-        <button type="submit">Login</button>
+        <button type="submit" >Login</button>
     </form>
 </body>
 </html>
