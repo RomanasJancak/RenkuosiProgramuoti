@@ -1,4 +1,71 @@
 /* MOBILE FIRST */
 .main{
     display : grid;
+    background-color: darkseagreen;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "logo header header header login"
+    "nav-bar nav-bar nav-bar nav-bar nav-bar"
+    "left-side main main main right-side"
+    "footer footer footer footer footer";
+}
+.logo-placeholder{
+    grid-area: logo;
+    background-color: aqua;
+}
+.news-notifications{
+    grid-area: header;
+    background-color: aquamarine;
+}
+.trumpa-bendra-suvestine{
+    grid-area: header;
+    background-color: burlywood;
+}
+.login-placeholder{
+    grid-area: login;
+    background-color: cadetblue;
+}
+
+.nav-bar{
+    grid-area: nav-bar;
+    background-color: cornflowerblue;
+}
+.nav-bar ul{
+    list-style: none;;
+}
+.nav-bar li{
+    display: inline;
+    padding-right: 1rem;
+    margin-left: 0;
+    text-decoration: none;
+}
+.nav-bar li a{
+    text-decoration: none;
+}
+.nav-bar ul li a:link{
+    text-decoration: none;
+}
+.nav-bar ul li a:visited{
+    text-decoration: none;
+}
+.nav-bar ul li a:hover{
+    background-color: rgb(100, 149, 237); 
+    color: yellow;
+}
+.left-side{
+    grid-area: left-side;
+    background-color: darksalmon;
+}
+.main-stuff{
+    grid-area: main;
+    background-color: darkkhaki;
+}
+.right-side{
+    grid-area: right-side;
+    background-color: darkgray;
+}
+.footer{
+    grid-area: footer;
+    background-color: cornsilk;
 }
