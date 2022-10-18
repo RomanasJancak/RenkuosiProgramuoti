@@ -1,14 +1,4 @@
 <?php session_start();
-
-if(isset($_SESSION["FailedLoginTime"])){
-    echo "LOPAS";
-  if(time() -  $_SESSION["FailedLoginTime" > 60]){
-    $_SESSION["FailedLoginStatus"] = "";
-    $_SESSION["FailedLogin"] = 0;
-  }else{
-    echo '<div class="alert-danger"><p>Palaukite kol vėl galėsite prisijungti</p></div>';
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +13,11 @@ if(isset($_SESSION["FailedLoginTime"])){
 <body>
 
     <div class="container">
-
+        <?php if(isset($_COOKIE["FailedLoginStatus"])){
+                    $_SESSION["zinute"] = "Palaukite kol vėl galesite prisijungti";
+                    $_SESSION["zinutes_stilius"] = "alert-danger";
+        }
+        ?>
 
         <?php if(isset($_SESSION["zinute"])) { ?>
             <div class="alert <?php echo $_SESSION["zinutes_stilius"]; ?>">
@@ -35,8 +29,8 @@ if(isset($_SESSION["FailedLoginTime"])){
             ?>
         <?php } ?>
         <!-- if jeigu sausainis egzistuoja - forma paslepta, jei ne - forma matoma -->
-        <form method="post" <?php if(isset($_SESSION["FailedLoginStatus"])){
-        echo $_SESSION["FailedLoginStatus"];}
+        <form method="post" <?php if(isset($_COOKIE["FailedLoginStatus"])){
+        echo $_COOKIE["FailedLoginStatus"];}
         ?> action="index.php">
             <input class="form-control" name="vardas" type="text" placeholder="Vardas">
             <input class="form-control" type="password" name="slaptazodis" placeholder="Slaptazodis">
@@ -63,8 +57,7 @@ if(isset($_SESSION["FailedLoginTime"])){
         if($vardas == $gVardas && $slaptazodis == $gSlaptazodis) {
             $_SESSION["arPrisijunges"] = 1;
             $_SESSION["vardas"] = $vardas;
-            $_SESSION["FailedLoginStatus"] = "";
-            $_SESSION["FailedLogin"] = 0;
+            setcookie("FailedLogin","1",time()-1);
             header("Location: manopaskyra.php");
         } else {
             //zinute turi buti raudona
@@ -73,18 +66,24 @@ if(isset($_SESSION["FailedLoginTime"])){
             // Sesijos skaitiklis $_SESSION["skaitiklis"]++
             //$_SESSION["skaitiklis"] == 3
             //susikurti sausainiukas kuris galiotu 60sec
+
             $_SESSION["zinute"] = "Neteisingi prisijungimo duomenys";
             $_SESSION["zinutes_stilius"] = "alert-danger";
-            if(!isset($_SESSION["FailedLogin"])){
-                $_SESSION["FailedLogin"] = 1;
-                $_SESSION["zinute"] = "Neteisingi prisijungimo duomenys FAIL LOGIN 1";
+            if(!isset($_COOKIE["FailedLogin"])){
+                //$_SESSION["FailedLogin"] = 1;
+                setcookie("FailedLogin","1",time()+3600);
+                //$_SESSION["zinute"] = "Neteisingi prisijungimo duomenys FAIL LOGIN 1";
             }else{
-                $FailedLogin = $_SESSION["FailedLogin"];
+
+                //$FailedLogin = $_SESSION["FailedLogin"];
+                $FailedLogin = $_COOKIE["FailedLogin"];
                 $FailedLogin++;
-                if($FailedLogin == 3){
-                    $_SESSION["FailedLoginTime"]= time();
-                    $_SESSION["FailedLoginStatus"] = "hidden";
-                    $_SESSION["FailedLogin"] = $FailedLogin;
+                //$_SESSION["FailedLogin"] = $FailedLogin;
+                setcookie("FailedLogin",$FailedLogin,time()+3600);
+                if($FailedLogin >= 3){
+                    //$_SESSION["FailedLoginTime"]= time();
+                    //$_SESSION["FailedLoginStatus"] = "hidden";
+                    setcookie("FailedLoginStatus","hidden",time()+60);
                 }
                 
                 
