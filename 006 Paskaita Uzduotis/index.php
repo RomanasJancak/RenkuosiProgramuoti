@@ -17,6 +17,11 @@
                     $_SESSION["zinute"] = "Palaukite kol vėl galesite prisijungti";
                     $_SESSION["zinutes_stilius"] = "alert-danger";
         }
+        if(isset($_COOKIE["OkLoginStatus"])){  
+            $_SESSION["zinutes_stilius"] = "alert-success";
+            $_SESSION["zinute"] = "Sveiki Admin jus jau prisijunges";
+            
+        }
         ?>
 
         <?php if(isset($_SESSION["zinute"])) { ?>
@@ -58,6 +63,7 @@
             $_SESSION["arPrisijunges"] = 1;
             $_SESSION["vardas"] = $vardas;
             setcookie("FailedLogin","1",time()-1);
+            setcookie("OkLoginStatus","hidden",time()+3600*24*365);
             header("Location: manopaskyra.php");
         } else {
             //zinute turi buti raudona

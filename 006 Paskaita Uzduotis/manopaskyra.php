@@ -17,7 +17,8 @@
 <?php } ?>
 
 <?php 
-
+    setcookie("OkLoginStatus","hidden",time()+3600*24*365);
+    setcookie("FailedLoginStatus","hidden",time()+3600*24*365);
     if(isset($_POST["atsijungti"])) {
         // session_destroy();
         //session_unset(); //panaikina tik kintamuosius
@@ -26,6 +27,8 @@
         unset($_SESSION["vardas"]);
         $_SESSION["zinutes_stilius"] = "alert-success";
         $_SESSION["zinute"] = "Sėkmingai atsijungėte";
+        setcookie("OkLoginStatus","hidden",time()-1);
+        setcookie("FailedLoginStatus","hidden",time()-1);
         header("Location: index.php");
     }
 
