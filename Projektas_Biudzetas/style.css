@@ -1,4 +1,96 @@
+/*
+320px
+480px
+600px
+768px
+900px
+1024px
+1200px
+*/
+
 /* MOBILE FIRST */
+@media only screen and (max-width: 320px) {
+    .main{
+        display : grid;
+        background-color: darkseagreen;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "login login login login login" 
+        "header header header header header"
+        "nav-bar nav-bar nav-bar nav-bar nav-bar"
+        "main main main main main"
+        "footer footer footer footer footer";
+    }
+    .logo-placeholder{
+        display:none;
+        grid-area: logo;
+        background-color: aqua;
+     }
+    
+    .news-notifications{
+        grid-area: header;
+        background-color: aquamarine;
+    }
+    .trumpa-bendra-suvestine{
+        grid-area: header;
+        background-color: burlywood;
+    }
+    .login-placeholder{
+        grid-area: login;
+        background-color: cadetblue;
+    }
+    .login-error-area{
+        display:inline;
+    }
+    
+    .nav-bar{
+        grid-area: nav-bar;
+        background-color: cornflowerblue;
+    }
+    .nav-bar ul{
+        list-style: none;;
+    }
+    .nav-bar li{
+        display: inline;
+        padding-right: 1rem;
+        margin-left: 0;
+        text-decoration: none;
+    }
+    .nav-bar li a{
+        text-decoration: none;
+    }
+    .nav-bar ul li a:link{
+        text-decoration: none;
+    }
+    .nav-bar ul li a:visited{
+        text-decoration: none;
+    }
+    .nav-bar ul li a:hover{
+        background-color: rgb(100, 149, 237); 
+        color: yellow;
+    }
+    .left-side{
+        display : none;
+        grid-area: left-side;
+        background-color: darksalmon;
+
+    }
+    .main-stuff{       
+        grid-area:  main ;
+        background-color: darkkhaki;
+    }
+    .right-side{
+        display : none;
+        grid-area: right-side;
+        background-color: darkgray;
+    }
+    .footer{
+        grid-area: footer;
+        background-color: cornsilk;
+    }
+}
+@media only screen and (min-width: 321px) {
 .main{
     display : grid;
     background-color: darkseagreen;
@@ -10,10 +102,12 @@
     "left-side main main main right-side"
     "footer footer footer footer footer";
 }
-.logo-placeholder{
+
+ .logo-placeholder{
     grid-area: logo;
     background-color: aqua;
-}
+ }
+
 .news-notifications{
     grid-area: header;
     background-color: aquamarine;
@@ -68,4 +162,5 @@
 .footer{
     grid-area: footer;
     background-color: cornsilk;
+}
 }
