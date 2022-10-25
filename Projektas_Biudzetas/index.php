@@ -50,8 +50,8 @@ if(isset($_POST["prisijungti"])) {
       <ul>
         <li><a href="">Pagrindinis</a></li>
         <li><a href="">Įplaukos</a></li>
-        <li><a href="">Išlaidos</a></li>
-        <li>Statistika</li>
+        <li><form action="index.php" method="post"><button type="submit" name="GotoIslaidos">Išlaidos</button></form></li>
+        <li><form action="index.php" method="post"><button type="submit" name="GotoStatistika_user">Statistika</button></form></li>
         <li>Pirkinių sąrašas</li>
         <li>Apie</li>
         <li>Kontaktai</li>
@@ -59,9 +59,15 @@ if(isset($_POST["prisijungti"])) {
     </nav>
     <div class="left-side"><p>left-side</p></div>
     <div class="main-stuff">
-      <!-- <p>main-stuff</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, odio eveniet a quibusdam harum consequatur consequuntur omnis voluptates eos fuga obcaecati nam eaque, accusantium aspernatur maxime repudiandae nesciunt fugiat architecto?</p> -->
-      <?php include "pages/IslaidosNew.php" ?>
+      <?php if(isset($_POST["GotoIslaidos"])) {
+      
+      include "pages/IslaidosNew.php";
+      }elseif(isset($_POST["GotoStatistika_user"])) {
+        include "pages/statistika_user.php";
+      }else{
+        include "pages/welcome.php";
+      }
+      ?>
     </div>
     <div class="right-side"><p>right-side</p></div>
     <div class="footer"><p>footer</p></div>
