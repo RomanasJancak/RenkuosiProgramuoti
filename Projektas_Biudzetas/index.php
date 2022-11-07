@@ -61,7 +61,8 @@ if(isset($_POST["prisijungti"])) {
     <div class="main-stuff">
       <?php if(isset($_POST["GotoIslaidos"])) {
       
-      include "pages/IslaidosNew.php";
+        include "pages/IslaidosNew.php";
+
       }elseif(isset($_POST["GotoStatistika_user"])) {
         include "pages/statistika_user.php";
       }else{
