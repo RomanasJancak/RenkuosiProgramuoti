@@ -1,0 +1,8 @@
+-- 1 Lentele
+SELECT 
+	employees.lastName,
+    employees.firstName,
+    offices.country
+FROM employees,offices
+WHERE employees.officeCode IN (SELECT officeCode FROM offices WHERE country='USA') AND employees.officeCode=offices.officeCode;
+-- 2 Lentele

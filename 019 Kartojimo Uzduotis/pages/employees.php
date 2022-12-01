@@ -2,6 +2,7 @@
 <?php include "classes/Employee-class.php" ?>
 <?php include "classes/Job-class.php" ?>
 <?php include "classes/Departament-class.php" ?>
+<?php include "classes/productLine-class.php" ?>
 
 <?php 
     $employees = $employeesObject->index(); 
@@ -9,8 +10,9 @@
        
     $employeesObject->deleteEmployee();
     $employeesObject->createEmployee();
-    $jobs = $jobsObject->index(); //visa darbu masyva
-    $departments = $departmentsObject->index();
+    //$jobs = $jobsObject->index(); //visa darbu masyva
+    $prodLines =  $ProductLineObject->index();
+    //$departments = $departmentsObject->index();
 
 ?>  
 
