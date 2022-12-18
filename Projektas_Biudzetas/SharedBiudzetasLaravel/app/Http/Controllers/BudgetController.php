@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budget;
+use App\Models\User;
 use App\Http\Requests\StoreBudgetRequest;
 use App\Http\Requests\UpdateBudgetRequest;
 
@@ -25,9 +26,10 @@ class BudgetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
         //
+        return view('budget.create', ['user' => $user]);
     }
 
     /**
@@ -36,9 +38,19 @@ class BudgetController extends Controller
      * @param  \App\Http\Requests\StoreBudgetRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBudgetRequest $request)
+    public function store(StoreBudgetRequest $request,$user)
     {
         //
+        //dd($request);
+        $budget = new Budget;
+        $budget->name = $request->budget_name;
+        //$budget->users()->save($request->user);
+        //$budget->users()->sync([$request->user_id]);
+        $budget->save();
+        //dd($request->user_id);        
+        $budget->users()->attach($user);
+                
+        return redirect()->route('user.show',$user);
     }
 
     /**
@@ -47,9 +59,10 @@ class BudgetController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function show(Budget $budget)
+    public function show(Budget $budget,User $user)
     {
         //
+        return view('budget.show', ['user' => $user,'budget'=>$budget]);
     }
 
     /**
