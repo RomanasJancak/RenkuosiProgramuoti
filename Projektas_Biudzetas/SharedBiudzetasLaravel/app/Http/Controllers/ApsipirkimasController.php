@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\apsipirkimas;
+use App\Models\Budget;
+use App\Models\Apsipirkimas;
+use App\Models\User;
 use App\Http\Requests\StoreapsipirkimasRequest;
 use App\Http\Requests\UpdateapsipirkimasRequest;
 
@@ -16,6 +18,8 @@ class ApsipirkimasController extends Controller
     public function index()
     {
         //
+        $apsipirkimai = Apsipirkimas::all();
+        return view('apsipirkimas.index', ['apsipirkimai' => $apsipirkimai]);
     }
 
     /**
@@ -23,9 +27,10 @@ class ApsipirkimasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apsipirkimas $apsipirkimas)
     {
         //
+        return view('apsipirkimas.create', ['apsipirkimas' => $apsipirkimas]);
     }
 
     /**
@@ -34,9 +39,16 @@ class ApsipirkimasController extends Controller
      * @param  \App\Http\Requests\StoreapsipirkimasRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreapsipirkimasRequest $request)
+    public function store(StoreapsipirkimasRequest $request,$budget)
     {
         //
+        //dd($request);
+        $apsipirkimas = new Apsipirkimas;
+        $apsipirkimas->shop_id = $request->shop_id;
+        $apsipirkimas->save();
+        $apsipirkimas->budget()->attach($apsipirkimas);       
+                
+        return redirect()->route('budget.show',$budget);
     }
 
     /**
@@ -45,9 +57,11 @@ class ApsipirkimasController extends Controller
      * @param  \App\Models\apsipirkimas  $apsipirkimas
      * @return \Illuminate\Http\Response
      */
-    public function show(apsipirkimas $apsipirkimas)
+    public function show(Apsipirkimas $apsipirkimas,Budget $budget,User $user)
+    //(Budget $budget,User $user)
     {
         //
+        return view('apsipirkimas.show', ['budget' => $budget,'apsipirkimas'=>$apsipirkimas,'user'=>$user]);
     }
 
     /**

@@ -19,7 +19,8 @@
             <th>Email verified at</th>
             <th>Created</th>
             <th>Updated</th>
-            
+            <th>Budgets count</th>
+            <th>Actions</th>
         </tr>
         <tr>
             <td>{{$user->id}}</td>
@@ -28,6 +29,8 @@
             <td>{{$user->email_verified_at}}</td>
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
+            <td>{{$user->countBudgets()}}</td>
+            <td><a href="{{route('user.edit',[$user])}}">Edit</a></td>
         </tr>
     </table>
     <table>
@@ -37,7 +40,7 @@
             <th>Name</th>
             <th>Created</th>
             <th>Updated</th>
-            <th>Show<th>
+            <th colspan="3">Actions<th>
         </tr>
         @foreach ($user->budgets as $budget)
         <tr>
@@ -52,7 +55,6 @@
             <td colspan="4" style="text-align : center">
             <a href="{{route('budget.create',$user)}}">Add Budget</a>            
             </td>
-            <td><a href="{{route('user.show',$user)}}">More...</a></td>
         </tr>
     </table>
 </body>

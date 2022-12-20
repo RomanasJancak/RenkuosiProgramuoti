@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Budget::class,'user_budgets');
     }
+    public function countBudgets(){
+        $users = User::withCount('budgets')->get();
+        $returnas = $users[0]->budgets_count;
+        return $returnas;
+    }
 }

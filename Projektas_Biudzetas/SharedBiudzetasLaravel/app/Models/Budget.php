@@ -18,4 +18,8 @@ class Budget extends Model
     {
         return $this->belongsToMany(User::class,'user_budgets');
     }
+    public function apsipirkimai()
+    {
+        return $this->hasMany(Apsipirkimas::class);
+    }
 }

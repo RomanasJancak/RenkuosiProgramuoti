@@ -67,9 +67,11 @@ class UserController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function edit(Budget $budget)
+    public function edit(User $user)
     {
         //
+        $users = User::all();
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
@@ -79,9 +81,13 @@ class UserController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBudgetRequest $request, Budget $budget)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
+        $user->name = $request->user_name;
+        $user->email = $request->user_email;
+        $user->save();
+        return redirect()->route('user.show',['user' => $user])->with('success_message', 'Sėkmingai pakeistas.');
     }
 
     /**

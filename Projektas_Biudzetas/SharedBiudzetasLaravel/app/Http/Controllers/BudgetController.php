@@ -62,7 +62,7 @@ class BudgetController extends Controller
     public function show(Budget $budget,User $user)
     {
         //
-        return view('budget.show', ['user' => $user,'budget'=>$budget]);
+        return view('budget.show', ['budget'=>$budget,'user' => $user]);
     }
 
     /**

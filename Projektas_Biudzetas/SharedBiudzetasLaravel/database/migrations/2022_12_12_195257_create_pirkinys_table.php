@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('pirkinys', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('price');
+            $table->integer('quantity');
+            $table->integer('deposit');
+            $table->integer('sum');
+            $table->unsignedBigInteger('prekepaslauga_id');
+
         });
     }
 

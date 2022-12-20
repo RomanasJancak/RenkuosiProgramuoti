@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('apsipirkimas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('shop_id');
+            $table->bigInteger('suma');
+            $table->dateTime('shop_time');
+            $table->unsignedBigInteger('budget_id');
+
         });
     }
 
