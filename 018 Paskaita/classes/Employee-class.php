@@ -1,5 +1,5 @@
 <?php
-include "utilities/DatabaseManager.php"
+include "utilities/DatabaseManager.php";
 class Employee{
 
     private $cols = array();

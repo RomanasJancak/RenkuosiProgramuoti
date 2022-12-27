@@ -26,7 +26,7 @@ Route::group(['prefix' => 'users'], function(){
     //Route::post('store', [App\Http\Controllers\BudgetController::class, 'store'])->name('budget.store');
     Route::get('edit/{user}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
     Route::post('update/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-    //Route::post('delete/{author}', [App\Http\Controllers\BudgetController::class, 'destroy'])->name('budget.destroy');
+    Route::get('delete/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
     Route::get('show/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 });
 

@@ -20,7 +20,7 @@
             <th>Created</th>
             <th>Updated</th>
             <th>Budgets count</th>
-            <th>Actions</th>
+            <th colspan="2">Actions</th>
         </tr>
         <tr>
             <td>{{$user->id}}</td>
@@ -29,8 +29,9 @@
             <td>{{$user->email_verified_at}}</td>
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
-            <td>{{$user->countBudgets()}}</td>
+            <td>{{$user->budgets->count()}}</td>
             <td><a href="{{route('user.edit',[$user])}}">Edit</a></td>
+            <td><a href="{{route('user.destroy',[$user])}}">Delete account</a></td>
         </tr>
     </table>
     <table>

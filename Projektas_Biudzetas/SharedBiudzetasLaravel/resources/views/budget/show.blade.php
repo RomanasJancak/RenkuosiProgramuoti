@@ -17,13 +17,14 @@
             <th>Name</th>
             <th>Created</th>
             <th>Updated</th>
-            
+            <th>User count</th>
         </tr>
         <tr>
             <td>{{$budget->id}}</td>
             <td>{{$budget->name}}</td>
             <td>{{$budget->created_at}}</td>
             <td>{{$budget->updated_at}}</td>
+            <td>{{$budget->users->count()}}</td>
         </tr>
     </table>
     <?php //dd($budget)

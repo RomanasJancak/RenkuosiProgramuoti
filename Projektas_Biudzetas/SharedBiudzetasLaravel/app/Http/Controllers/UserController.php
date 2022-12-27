@@ -70,7 +70,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        $users = User::all();
         return view('user.edit', ['user' => $user]);
     }
 
@@ -81,6 +80,10 @@ class UserController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
+    public function addBudget(UpdateUserRequest $request,User $user, Budget $budget)
+    {
+        $user->budgets()->attach($budget);
+    }
     public function update(UpdateUserRequest $request, User $user)
     {
         //
@@ -96,8 +99,14 @@ class UserController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Budget $budget)
+    public function destroy(User $user)
     {
         //
+        if($user->budgets->count()){
+            return redirect()->route('user.index')->with('info_message', 'Trinti negalima, nes turi Biudžetų.');
+        }
+        $user_name = $user->name;
+        $user->delete();
+        return redirect()->route('user.index')->with('success_message', 'Vartotojas : '.$user_name.' Sekmingai ištrintas.');
     }
 }
