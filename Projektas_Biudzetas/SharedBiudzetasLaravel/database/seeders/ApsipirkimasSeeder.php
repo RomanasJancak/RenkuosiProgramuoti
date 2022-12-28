@@ -15,5 +15,6 @@ class ApsipirkimasSeeder extends Seeder
     public function run()
     {
         //
+        Apsipirkimas::factory()->count()->create();
     }
 }

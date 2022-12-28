@@ -17,7 +17,16 @@ class ApsipirkimasFactory extends Factory
     public function definition()
     {
         return [
-            //
+            // //
+            // 'name' => fake()->name(),
+            // 'email' => fake()->unique()->safeEmail(),
+            // 'email_verified_at' => now(),
+            // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 'remember_token' => Str::random(10),
+            'shop_id'   => fake()->numberBetween(),
+            'suma'      => fake()->numberBetween(),
+            'shop_time' => fake()->date('Y_m_d').' '.fake()->time('H_i_s'),
+            'budget_id'=> \App\Models\Budget::all()->random()->id
         ];
     }
 }
