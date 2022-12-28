@@ -19,8 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->bigInteger('suma');
             $table->dateTime('shop_time');
+            //Foreign keys
             $table->unsignedBigInteger('budget_id');
-
+            //References
+            $table->foreign('budget_id')->references('id')->on('budgets');
         });
     }
 

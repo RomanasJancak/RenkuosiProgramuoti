@@ -17,6 +17,8 @@ class UserBudgetFactory extends Factory
     public function definition()
     {
         return [
+            'budget_id'=> \App\Models\Budget::all()->random()->id,
+            'user_id' => \App\Models\User::all()->random()->id
             //
         ];
     }

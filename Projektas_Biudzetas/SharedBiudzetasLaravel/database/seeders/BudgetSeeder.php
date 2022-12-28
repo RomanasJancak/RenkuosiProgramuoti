@@ -15,5 +15,6 @@ class BudgetSeeder extends Seeder
     public function run()
     {
         //
+        Budget::factory()->count()->create();
     }
 }

@@ -14,7 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $number = 3;
+        $budgetfactor = 2;
+        $relation_userBudgetFactor = 2;
+        \App\Models\User::factory($number)->create();
+        //\App\Models\Budget::factory(10)->create();
+        \App\Models\Budget::factory()->count($number*$budgetfactor)->create();
+        \App\Models\UserBudget::factory($number*$budgetfactor*$relation_userBudgetFactor)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
