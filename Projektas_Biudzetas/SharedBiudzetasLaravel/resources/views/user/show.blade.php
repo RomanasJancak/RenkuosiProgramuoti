@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">   
-    <title>User {{$user->name}} info</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
+<div class="container">
     <div>
         <h6><a href="{{route('user.index')}}">Back</a></h6>
     </div>    
-    <table>
+    <table class="table table-striped caption-top">
         <caption>Vartotojas</caption>
         <tr>
             <th>ID</th>
@@ -34,29 +28,6 @@
             <td><a href="{{route('user.destroy',[$user])}}">Delete account</a></td>
         </tr>
     </table>
-    <table>
-        <caption>Biudžetai</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th colspan="3">Actions<th>
-        </tr>
-        @foreach ($user->budgets as $budget)
-        <tr>
-            <td>{{$budget->id}}</td>
-            <td>{{$budget->name}}</td>
-            <td>{{$budget->created_at}}</td>
-            <td>{{$budget->updated_at}}</td>
-            <td><a href="{{route('budget.show',[$budget,$user])}}">More...</a></td>
-        </tr>
-        @endforeach
-        <tr>
-            <td colspan="4" style="text-align : center">
-            <a href="{{route('budget.create',$user)}}">Add Budget</a>            
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
+    @include('budget.index', ['budgets' => $user->budgets])
+</div>
+@endsection

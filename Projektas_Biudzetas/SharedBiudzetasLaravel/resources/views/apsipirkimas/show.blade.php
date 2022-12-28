@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">   
-    <title>Apsipirkimo : "{{$apsipirkimas->id}}" info</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
+<div class="container">
     <div>
         <h6><a href="{{route('budget.show',[$budget,$user])}}">Back</a></h6>
     </div>    
-    <table>
+    <table class="table table-striped caption-top">
         <caption>Apsipirkimas</caption>
         <tr>
             <th>ID</th>
@@ -30,25 +24,5 @@
             <td>{{$apsipirkimas->budget_id}}</td>
         </tr>
     </table>
-
-    <table>
-        <caption>Pirkiniai</caption>
-        @foreach ($budget->apsipirkimai as $apsipirkimas)
-        <tr>
-        <td>{{$apsipirkimas->id}}</td>
-            <td>{{$apsipirkimas->created_at}}</td>
-            <td>{{$apsipirkimas->updated_at}}</td>
-            <td>{{$apsipirkimas->shop_id}}</td>
-            <td>{{$apsipirkimas->suma}}</td>
-            <td>{{$apsipirkimas->shop_time}}</td>
-            <td>{{$apsipirkimas->budget_id}}</td>
-            <td><a href="{{route('apsipirkimas.show',[$apsipirkimas,$budget,$user])}}">More...</a></td>
-            
-        </tr>
-        @endforeach
-        <tr>
-            <td colspan="4" style="text-align : center">Add Budget</td>
-        </tr>
-    </table>
-</body>
-</html>
+    </div>
+@endsection

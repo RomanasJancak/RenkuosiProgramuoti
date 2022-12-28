@@ -1,5 +1,5 @@
-<table>
-        <caption>Apsipirkimai</caption>
+<table class="table table-striped caption-top">
+        <caption style="text-align:center">Apsipirkimai</caption>
         <tr>
             <th>ID</th>
             <th>Created</th>
@@ -8,6 +8,7 @@
             <th>Suma</th>
             <th>Shop time</th>
             <th>Budget</th>
+            <th colspan="3">Actions<th>
         </tr>
         @foreach ($apsipirkimai as $apsipirkimas)
         <tr>
@@ -18,6 +19,7 @@
             <td>{{$apsipirkimas->suma}}</td>
             <td>{{$apsipirkimas->shop_time}}</td>
             <td>{{$apsipirkimas->budget_id}}</td>
+            <td><a href="{{route('apsipirkimas.show',[$apsipirkimas,$budget,$user])}}">More...</a></td>
         </tr>
         @endforeach
         <tr>

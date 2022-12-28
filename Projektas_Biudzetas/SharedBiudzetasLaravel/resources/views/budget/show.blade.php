@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">   
-    <title>Biudžetas "{{$budget->name}}"info</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
+<div class="container">
     <div>
         <h6><a href="{{route('user.show',$user)}}">Back</a></h6>
     </div>    
-    <table>
+    <table class="table table-striped caption-top">
         <caption>Biudžetas</caption>
         <tr>
             <th>ID</th>
@@ -27,35 +21,6 @@
             <td>{{$budget->users->count()}}</td>
         </tr>
     </table>
-    <?php //dd($budget)
-    ?>
-    <table>
-        <caption>Apsipirkimai</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Show<th>
-        </tr>
-        <?php  ?>
-        @foreach ($budget->apsipirkimai as $apsipirkimas)
-        <tr>
-        <td>{{$apsipirkimas->id}}</td>
-            <td>{{$apsipirkimas->created_at}}</td>
-            <td>{{$apsipirkimas->updated_at}}</td>
-            <td>{{$apsipirkimas->shop_id}}</td>
-            <td>{{$apsipirkimas->suma}}</td>
-            <td>{{$apsipirkimas->shop_time}}</td>
-            <td>{{$apsipirkimas->budget_id}}</td>
-            <td><a href="{{route('apsipirkimas.show',[$apsipirkimas,$budget,$user])}}">More...</a></td>
-            
-        </tr>
-        @endforeach
-        <tr>
-            <td colspan="4" style="text-align : center">Add Budget</td>
-        </tr>
-    </table>
-</body>
-
-</html>
+    @include('apsipirkimas.index', ['apsipirkimai' => $budget->apsipirkimai])
+</div>
+@endsection

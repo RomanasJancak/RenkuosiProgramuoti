@@ -101,6 +101,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        //User::factory()->count(15)->create();
+        //return redirect()->route('user.index')->with('success_message', 'Vartotojas :  Sekmingai ištrintas.');    
         //
         if($user->budgets->count()){
             return redirect()->route('user.index')->with('info_message', 'Trinti negalima, nes turi Biudžetų.');
