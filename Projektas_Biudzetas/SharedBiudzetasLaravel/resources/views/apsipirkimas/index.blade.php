@@ -25,4 +25,4 @@
         <tr>
             <td colspan="4" style="text-align : center">Add Apsipirkimas</td>
         </tr>
-    </table>
+</table>

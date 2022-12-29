@@ -71,9 +71,10 @@ class BudgetController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function edit(Budget $budget)
+    public function edit(Budget $budget,User $user)
     {
         //
+        return view('budget.edit', ['budget' => $budget,'user' => $user]);
     }
 
     /**
@@ -83,9 +84,18 @@ class BudgetController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBudgetRequest $request, Budget $budget)
+    public function update(UpdateBudgetRequest $request, Budget $budget,User $user)
     {
         //
+                //
+        //dd($request);
+        $budget->name = $request->budget_name;
+        //$budget->users()->save($request->user);
+        //$budget->users()->sync([$request->user_id]);
+        $budget->save();
+        //dd($request->user_id);        
+                
+        return view('budget.show', ['budget'=>$budget,'user' => $user]);
     }
 
     /**
@@ -94,8 +104,15 @@ class BudgetController extends Controller
      * @param  \App\Models\Budget  $budget
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Budget $budget)
+    public function destroy(Budget $budget,User $user)
     {
-        //
+       // dd($budget);
+       // if($budget->users->count()){
+       //     return redirect()->route('user.show',$user)->with('info_message', 'Trinti negalima, nes turi Biudžetų.');
+       // }
+        $budget_name = $budget->name;
+        $budget->users()->detach();
+        $budget->delete();
+        return redirect()->route('user.show',$user)->with('success_message', 'Vartotojas : '.$budget_name.' Sekmingai ištrintas.');
     }
 }
