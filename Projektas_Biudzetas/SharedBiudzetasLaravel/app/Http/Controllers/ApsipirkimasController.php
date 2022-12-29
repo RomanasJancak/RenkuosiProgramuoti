@@ -27,10 +27,10 @@ class ApsipirkimasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Apsipirkimas $apsipirkimas)
+    public function create(Budget $budget,User $user)
     {
         //
-        return view('apsipirkimas.create', ['apsipirkimas' => $apsipirkimas]);
+        return view('apsipirkimas.create', ['budget' => $budget,'user' => $user]);
     }
 
     /**
@@ -39,16 +39,19 @@ class ApsipirkimasController extends Controller
      * @param  \App\Http\Requests\StoreapsipirkimasRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreapsipirkimasRequest $request,$budget)
+    public function store(StoreapsipirkimasRequest $request,$budget,$user)
     {
         //
         //dd($request);
         $apsipirkimas = new Apsipirkimas;
         $apsipirkimas->shop_id = $request->shop_id;
+        $apsipirkimas->suma = $request->suma;
+        $apsipirkimas->shop_time = $request->shop_time;
+        $apsipirkimas->budget_id = $budget;
         $apsipirkimas->save();
-        $apsipirkimas->budget()->attach($apsipirkimas);       
+        $apsipirkimas->budget()->associate($apsipirkimas);       
                 
-        return redirect()->route('budget.show',$budget);
+        return redirect()->route('budget.show',[$budget,$user]);
     }
 
     /**
@@ -70,9 +73,10 @@ class ApsipirkimasController extends Controller
      * @param  \App\Models\apsipirkimas  $apsipirkimas
      * @return \Illuminate\Http\Response
      */
-    public function edit(apsipirkimas $apsipirkimas)
+    public function edit(Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
         //
+        return view('apsipirkimas.edit', ['apsipirkimas'=> $apsipirkimas,'budget' => $budget,'user' => $user]);
     }
 
     /**
@@ -82,9 +86,15 @@ class ApsipirkimasController extends Controller
      * @param  \App\Models\apsipirkimas  $apsipirkimas
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateapsipirkimasRequest $request, apsipirkimas $apsipirkimas)
+    public function update(UpdateapsipirkimasRequest $request, Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
         //
+        $apsipirkimas->shop_id = $request->shop_id;
+        $apsipirkimas->suma = $request->suma;
+        $apsipirkimas->shop_time = $request->shop_time;
+        $apsipirkimas->save();      
+                
+        return redirect()->route('apsipirkimas.show',[$apsipirkimas,$budget,$user]);
     }
 
     /**
@@ -93,8 +103,12 @@ class ApsipirkimasController extends Controller
      * @param  \App\Models\apsipirkimas  $apsipirkimas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(apsipirkimas $apsipirkimas)
+    public function destroy(apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
         //
+        //$apsipirkimas->budget()->detach();
+        $apsipirkimas->delete();
+        return redirect()->route('budget.show',[$budget,$user])->with('success_message', 'Vartotojas :  Sekmingai ištrintas.');
+   
     }
 }

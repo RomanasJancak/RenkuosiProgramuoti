@@ -12,7 +12,8 @@
             <th>Updated</th>
             <th>Suma</th>
             <th>Shop</th>
-            <th>Shop time</th>           
+            <th>Shop time</th>
+            <th colspan="2">Actions</th>           
         </tr>
         <tr >
             <td>{{$apsipirkimas->id}}</td>
@@ -21,7 +22,8 @@
             <td>{{$apsipirkimas->suma}}</td>
             <td>{{$apsipirkimas->shop_id}}</td>
             <td>{{$apsipirkimas->shop_time}}</td>
-            <td>{{$apsipirkimas->budget_id}}</td>
+            <td><a href="{{route('apsipirkimas.edit',[$apsipirkimas,$budget,$user])}}">Edit</a></td>
+            <td><a href="{{route('apsipirkimas.destroy',[$apsipirkimas,$budget,$user])}}">Ištrinti apsipirkimą</a></td>
         </tr>
     </table>
     </div>

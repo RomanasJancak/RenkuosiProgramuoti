@@ -21,7 +21,7 @@
             <td>{{$budget->updated_at}}</td>
             <td>{{$budget->users->count()}}</td>
             <td><a href="{{route('budget.edit',[$budget,$user])}}">Edit</a></td>
-            <td><a href="{{route('budget.destroy',[$budget,$user])}}">Delete account</a></td>
+            <td><a href="{{route('budget.destroy',[$budget,$user])}}">Delete budget</a></td>
         </tr>
     </table>
     @include('apsipirkimas.index', ['apsipirkimai' => $budget->apsipirkimai])

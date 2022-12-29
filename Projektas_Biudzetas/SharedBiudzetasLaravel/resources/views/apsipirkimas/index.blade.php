@@ -1,4 +1,9 @@
 <table class="table table-striped caption-top">
+    <tr>
+        <td colspan="4" style="text-align : center">
+            <a href="{{route('apsipirkimas.create',[$budget,$user])}}">Add apsipirkimas</a>            
+        </td>
+    </tr>
         <caption style="text-align:center">Apsipirkimai</caption>
         <tr>
             <th>ID</th>
@@ -22,7 +27,5 @@
             <td><a href="{{route('apsipirkimas.show',[$apsipirkimas,$budget,$user])}}">More...</a></td>
         </tr>
         @endforeach
-        <tr>
-            <td colspan="4" style="text-align : center">Add Apsipirkimas</td>
-        </tr>
+
 </table>
