@@ -15,5 +15,6 @@ class PirkinysSeeder extends Seeder
     public function run()
     {
         //
+        Pirkinys::factory()->count()->create();
     }
 }

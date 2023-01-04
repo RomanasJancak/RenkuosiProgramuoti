@@ -26,5 +26,6 @@
             <td><a href="{{route('apsipirkimas.destroy',[$apsipirkimas,$budget,$user])}}">Ištrinti apsipirkimą</a></td>
         </tr>
     </table>
+    @include('pirkinys.index', ['pirkiniai' => $apsipirkimas->pirkiniai])
     </div>
 @endsection

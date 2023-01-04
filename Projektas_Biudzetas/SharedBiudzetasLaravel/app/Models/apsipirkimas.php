@@ -13,4 +13,8 @@ class Apsipirkimas extends Model
     {
         return $this->belongsTo(Budget::class);
     }
+    public function pirkiniai()
+    {
+        return $this->hasMany(Pirkinys::class);
+    }
 }

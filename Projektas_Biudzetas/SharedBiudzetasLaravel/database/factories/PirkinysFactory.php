@@ -17,7 +17,12 @@ class PirkinysFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'price'   => fake()->numberBetween(),
+            'quantity'      => fake()->numberBetween(),
+            'deposit' => fake()->numberBetween(10,25),
+            'sum'=> fake()->numberBetween(),
+            'prekepaslauga_id'=> fake()->numberBetween(),
+            'apsipirkimas_id'=> \App\Models\Apsipirkimas::all()->random()->id,
         ];
     }
 }

@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+//import * as tempjs from 'tempscripts.js';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -37,3 +38,66 @@ app.component('example-component', ExampleComponent);
  */
 
 app.mount('#app');
+
+
+//
+//
+/////////////////////////////////////////////////
+//
+//
+console.log(window.location.pathname);
+console.log(window.location.search);
+console.log(new URL(window.location.href).pathname);
+if(window.location.pathname.includes('/apsipirkimai/show/')){
+    console.log('contains');
+};
+
+
+function changeColor(newColor) {
+    const elem = document.getElementById('pirkiniu_sarasas');
+    elem.style.color = newColor;
+}
+
+document.getElementById ("redbutton").addEventListener ("click", function(){
+    var doc =   document.getElementById ("pirkiniu_sarasas")
+    var tag_tr  =   document.createElement("tr");
+
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+            tag_td.appendChild(text);
+            tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+            tag_td.appendChild(text);
+            tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+        tag_td.appendChild(text);
+        tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+            tag_td.appendChild(text);
+            tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+            tag_td.appendChild(text);
+            tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+        tag_td.appendChild(text);
+        tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+            tag_td.appendChild(text);
+            tag_tr.appendChild(tag_td);
+        var tag_td  =   document.createElement("td");
+        var text    =   document.createTextNode("vardas");
+        tag_td.appendChild(text);
+        tag_tr.appendChild(tag_td);
+
+    doc.appendChild(tag_tr);    
+
+});
+document.getElementById ("bluebutton").addEventListener ("click", function(){
+changeColor('blue')
+});

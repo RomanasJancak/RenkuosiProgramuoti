@@ -16,6 +16,8 @@ class PirkinysController extends Controller
     public function index()
     {
         //
+        $pirkiniai = Pirkinys::all();
+        return view('pirkinys.index', ['pirkiniai' => $pirkiniai]);
     }
 
     /**
