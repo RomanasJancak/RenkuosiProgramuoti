@@ -18,6 +18,11 @@
             <th colspan="3">Actions<th>
         </tr>
     </thead>
+    <form id="naujas_pirkinys">
+                @csrf
+                <input id="search" type="text" name="search" class="form-control" placeholder="search">
+                <button id="seachBtn" class="btn btn-primary" type="Submit">Search</button>
+            </form>
     <tbody id='pirkiniu_sarasas'>
         @foreach ($pirkiniai as $pirkinys)
         <tr>

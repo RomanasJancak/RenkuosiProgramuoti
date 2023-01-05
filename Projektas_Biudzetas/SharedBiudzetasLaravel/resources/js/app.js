@@ -101,3 +101,34 @@ document.getElementById ("redbutton").addEventListener ("click", function(){
 document.getElementById ("bluebutton").addEventListener ("click", function(){
 changeColor('blue')
 });
+$(document).ready(function(){
+    console.log("here");
+    //------
+    //var form = '#add-user-form';
+    var form = '#naujas_pirkinys';
+    //------
+
+    $(form).on('submit', function(event){
+        event.preventDefault();
+
+        var url = $(this).attr('data-action');
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: new FormData(this),
+            dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+            success:function(response)
+            {
+                $(form).trigger("reset");
+                alert(response.success)
+            },
+            error: function(response) {
+            }
+        });
+    });
+
+});

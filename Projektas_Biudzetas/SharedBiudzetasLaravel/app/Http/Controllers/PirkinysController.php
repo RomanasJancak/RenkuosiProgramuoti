@@ -36,9 +36,16 @@ class PirkinysController extends Controller
      * @param  \App\Http\Requests\StorepirkinysRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorepirkinysRequest $request)
+    public function store(StorepirkinysRequest $request,$apsipirkimas,$produkas)
     {
-        //
+        $pirkinys   =   new Pirkinys;
+        $pirkinys->price    =   $request->price;
+        $pirkinys->quantity =   $request->quantity;
+        $pirkinys->deposit  =   $request->deposit;
+        $pirkinys->sum      =   $pirkinys->quantity*($pirkinys->price+$pirkinys->deposit);
+        $pirkinys->prekepaslauga_id =   $request->prekepaslauga_id;
+        $pirkinys->save();
+        $pirkinys->apsipirkimas()->associate($pirkinys);
     }
 
     /**
