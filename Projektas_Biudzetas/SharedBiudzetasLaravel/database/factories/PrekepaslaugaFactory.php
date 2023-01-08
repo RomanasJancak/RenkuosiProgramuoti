@@ -17,7 +17,9 @@ class PrekepaslaugaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'   => fake()->word(),
+            'aprasymas'      => fake()->sentence(3)
+            //,'kategorija'=> fake()->numberBetween()
         ];
     }
 }

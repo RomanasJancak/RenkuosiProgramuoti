@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Budget;
+use App\Models\Apsipirkimas;
+use App\Models\User;
 use App\Models\pirkinys;
+use App\Models\Prekepaslauga;
 use App\Http\Requests\StorepirkinysRequest;
 use App\Http\Requests\UpdatepirkinysRequest;
 
@@ -25,9 +29,9 @@ class PirkinysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
-        //
+        return view('pirkinys.create', ['budget' => $budget,'user' => $user,'apsipirkimas' => $apsipirkimas]);
     }
 
     /**
@@ -36,7 +40,7 @@ class PirkinysController extends Controller
      * @param  \App\Http\Requests\StorepirkinysRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorepirkinysRequest $request,$apsipirkimas,$produkas)
+    public function store(StorepirkinysRequest $request,$apsipirkimas,$budget,$user)
     {
         $pirkinys   =   new Pirkinys;
         $pirkinys->price    =   $request->price;
@@ -44,8 +48,10 @@ class PirkinysController extends Controller
         $pirkinys->deposit  =   $request->deposit;
         $pirkinys->sum      =   $pirkinys->quantity*($pirkinys->price+$pirkinys->deposit);
         $pirkinys->prekepaslauga_id =   $request->prekepaslauga_id;
+        $pirkinys->apsipirkimas_id = $apsipirkimas;
         $pirkinys->save();
         $pirkinys->apsipirkimas()->associate($pirkinys);
+        return redirect()->route('apsipirkimas.show',[$apsipirkimas,$budget,$user]);
     }
 
     /**

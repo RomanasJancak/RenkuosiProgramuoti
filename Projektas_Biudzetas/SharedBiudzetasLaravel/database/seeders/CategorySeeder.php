@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PrekepaslaugaSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class PrekepaslaugaSeeder extends Seeder
      */
     public function run()
     {
-        Prekepaslauga::factory()->count()->create();
+        //
     }
 }

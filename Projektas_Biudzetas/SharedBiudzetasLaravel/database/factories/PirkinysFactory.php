@@ -16,13 +16,16 @@ class PirkinysFactory extends Factory
      */
     public function definition()
     {
+        $price  =   fake()->numberBetween(0,1000);
+        $quantity   =   fake()->numberBetween(1,3);
+        $deposit    =   fake()->numberBetween(10,25);
         return [
-            'price'   => fake()->numberBetween(),
-            'quantity'      => fake()->numberBetween(),
-            'deposit' => fake()->numberBetween(10,25),
-            'sum'=> fake()->numberBetween(),
-            'prekepaslauga_id'=> fake()->numberBetween(),
-            'apsipirkimas_id'=> \App\Models\Apsipirkimas::all()->random()->id,
+            'price'   => $price,
+            'quantity'      => $quantity,
+            'deposit' => $deposit,
+            'sum'=> $quantity*($price+$deposit),
+            'prekepaslauga_id'=> \App\Models\Prekepaslauga::all()->random()->id,
+            'apsipirkimas_id'=> \App\Models\Apsipirkimas::all()->random()->id
         ];
     }
 }

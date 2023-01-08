@@ -12,4 +12,8 @@ class Pirkinys extends Model
     {
         return $this->belongsTo(Apsipirkimas::class);
     }
+    public function prekepaslauga()
+    {
+        return $this->belongsTo(Prekepaslauga::class);
+    }
 }

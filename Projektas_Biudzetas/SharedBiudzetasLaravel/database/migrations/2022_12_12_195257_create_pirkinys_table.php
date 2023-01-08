@@ -20,11 +20,12 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('deposit');
             $table->integer('sum');
-            $table->unsignedBigInteger('prekepaslauga_id');
             //Foreign keys
             $table->unsignedBigInteger('apsipirkimas_id');
+            $table->unsignedBigInteger('prekepaslauga_id');
             //References
             $table->foreign('apsipirkimas_id')->references('id')->on('apsipirkimas');
+            $table->foreign('prekepaslauga_id')->references('id')->on('prekepaslaugas');
         });
     }
 
