@@ -24,9 +24,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        //
+        return view('category.create', ['category' => $category]);
     }
 
     /**
@@ -35,9 +35,24 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreCategoryRequest $request,Category $category)
     {
-        //
+        $kategorija = new Category;
+        $kategorija->name = $request->category_name;
+        $kategorija->parent_id = $category->id;      
+        $kategorija->save();
+        $kategorija->parent()->associate($category);       
+                
+        return redirect()->route('category.index');
+    }
+    public function store_withoutParent(StoreCategoryRequest $request)
+    {
+        $kategorija = new Category;
+        $kategorija->name = $request->category_name;
+        $kategorija->parent_id = 0;        
+        $kategorija->save();      
+        
+        return redirect()->route('category.index');
     }
 
     /**

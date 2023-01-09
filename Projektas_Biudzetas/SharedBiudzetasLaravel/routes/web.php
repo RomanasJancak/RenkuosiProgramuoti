@@ -59,8 +59,10 @@ Route::group(['prefix' => 'pirkiniai'], function(){
  });
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
-    // Route::get('create/{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'create'])->name('pirkinys.create');
-    // Route::post('store/{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'store'])->name('pirkinys.store');
+    Route::get('create/{category}', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+    Route::post('store/{category}', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+    Route::post('store_withoutParent/', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store_withoutParent');
+
     // Route::get('edit/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'edit'])->name('apsipirkimas.edit');
     // Route::post('update/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'update'])->name('apsipirkimas.update');
     // Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy');

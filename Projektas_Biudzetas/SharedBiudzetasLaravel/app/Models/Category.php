@@ -16,8 +16,8 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class,'parent_id');
     }
-    public function createWithFake(){
-        for($i = 0;$i < 100;$i++){
+    public function createWithFake($number){
+        for($i = 0;$i < $number;$i++){
             $kategorija = new Category;
             $tevas = Category::all()->random();           
             $kategorija->parent_id = $tevas->id;

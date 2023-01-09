@@ -18,8 +18,8 @@ class PrekepaslaugaFactory extends Factory
     {
         return [
             'name'   => fake()->word(),
-            'aprasymas'      => fake()->sentence(3)
-            //,'kategorija'=> fake()->numberBetween()
+            'aprasymas'      => fake()->sentence(3),
+            'kategorija'=> \App\Models\Category::all()->random()->id
         ];
     }
 }

@@ -23,14 +23,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory($number)->create();
         //\App\Models\Budget::factory(10)->create();
         \App\Models\Category::factory($categoryFactor)->create();
+        $kat = new Category();
+        $kat->createWithFake(100);
         \App\Models\Budget::factory()->count($budgetfactor)->create();
         \App\Models\UserBudget::factory($relation_userBudgetFactor)->create();
         \App\Models\Apsipirkimas::factory($apsipirkimasFactor)->create();
         \App\Models\Prekepaslauga::factory($pirkinysFactor)->create();
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();
-        $kat = new Category();
-        $kat->createWithFake();
-       // CategoryController::createWithFake(100);
         
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
