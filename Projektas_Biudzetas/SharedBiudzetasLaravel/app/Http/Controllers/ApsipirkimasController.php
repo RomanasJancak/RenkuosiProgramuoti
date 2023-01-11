@@ -106,7 +106,9 @@ class ApsipirkimasController extends Controller
     public function destroy(apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
         //
-        //$apsipirkimas->budget()->detach();
+        if($apsipirkimas->pirkiniai->count()){
+            return redirect()->route('apsipirkimas.show', ['apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user'=>$user]);
+        }
         $apsipirkimas->delete();
         return redirect()->route('budget.show',[$budget,$user])->with('success_message', 'Vartotojas :  Sekmingai ištrintas.');
    

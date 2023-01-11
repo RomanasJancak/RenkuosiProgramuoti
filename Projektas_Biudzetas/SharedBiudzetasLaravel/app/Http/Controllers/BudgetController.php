@@ -110,6 +110,9 @@ class BudgetController extends Controller
        // if($budget->users->count()){
        //     return redirect()->route('user.show',$user)->with('info_message', 'Trinti negalima, nes turi Biudžetų.');
        // }
+        if($budget->apsipirkimai->count()){
+            return redirect()->route('budget.show',[$budget,$user])->with('info_message', 'Trinti negalima, nes turi Apsipirkimų.');
+        }
         $budget_name = $budget->name;
         $budget->users()->detach();
         $budget->delete();

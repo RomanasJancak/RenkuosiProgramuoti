@@ -16,10 +16,14 @@ class PrekepaslaugaFactory extends Factory
      */
     public function definition()
     {
+        $randomCategory = \App\Models\Category::all()->random();
+        while($randomCategory->childs->isNotEmpty()){
+            $randomCategory = \App\Models\Category::all()->random();
+        }
         return [
             'name'   => fake()->word(),
             'aprasymas'      => fake()->sentence(3),
-            'category_id'=> \App\Models\Category::all()->random()->id
+            'category_id'=> $randomCategory->id
         ];
     }
 }
