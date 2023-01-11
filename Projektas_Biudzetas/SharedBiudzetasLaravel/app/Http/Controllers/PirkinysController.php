@@ -47,11 +47,11 @@ class PirkinysController extends Controller
         $pirkinys->quantity =   $request->quantity;
         $pirkinys->deposit  =   $request->deposit;
         $pirkinys->sum      =   $pirkinys->quantity*($pirkinys->price+$pirkinys->deposit);
-        $pirkinys->prekepaslauga_id =   $request->prekepaslauga_id;
+        $pirkinys->prekepaslauga_id =   $request->prekePaslauga;
         $pirkinys->apsipirkimas_id = $apsipirkimas;
         $pirkinys->save();
-        $pirkinys->apsipirkimas()->associate($pirkinys);
-        return redirect()->route('apsipirkimas.show',[$apsipirkimas,$budget,$user]);
+        $pirkinys->apsipirkimas()->associate($apsipirkimas);
+        return redirect()->route('pirkinys.show',[$pirkinys,$apsipirkimas,$budget,$user]);
     }
 
     /**
@@ -60,9 +60,9 @@ class PirkinysController extends Controller
      * @param  \App\Models\pirkinys  $pirkinys
      * @return \Illuminate\Http\Response
      */
-    public function show(pirkinys $pirkinys)
+    public function show(pirkinys $pirkinys,Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
-        //
+        return view('pirkinys.show', ['pirkinys'=>$pirkinys,'apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user'=>$user]);
     }
 
     /**
@@ -71,9 +71,9 @@ class PirkinysController extends Controller
      * @param  \App\Models\pirkinys  $pirkinys
      * @return \Illuminate\Http\Response
      */
-    public function edit(pirkinys $pirkinys)
+    public function edit(pirkinys $pirkinys,Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
-        //
+        return view('pirkinys.edit', ['pirkinys'=>$pirkinys,'apsipirkimas'=> $apsipirkimas,'budget' => $budget,'user' => $user]);
     }
 
     /**
@@ -83,9 +83,17 @@ class PirkinysController extends Controller
      * @param  \App\Models\pirkinys  $pirkinys
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatepirkinysRequest $request, pirkinys $pirkinys)
+    public function update(UpdatepirkinysRequest $request, pirkinys $pirkinys,Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
-        //
+        $pirkinys->price    =   $request->price;
+        $pirkinys->quantity =   $request->quantity;
+        $pirkinys->deposit  =   $request->deposit;
+        $pirkinys->sum      =   $pirkinys->quantity*($pirkinys->price+$pirkinys->deposit);
+        $pirkinys->prekepaslauga_id =   $request->prekePaslauga;
+        $pirkinys->apsipirkimas_id = $apsipirkimas->id;
+        $pirkinys->save();
+        $pirkinys->apsipirkimas()->associate($apsipirkimas);
+        return redirect()->route('pirkinys.show',[$pirkinys,$apsipirkimas,$budget,$user]);
     }
 
     /**
@@ -94,8 +102,11 @@ class PirkinysController extends Controller
      * @param  \App\Models\pirkinys  $pirkinys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pirkinys $pirkinys)
+    public function destroy(pirkinys $pirkinys,$user)
     {
-        //
+        $apsipirkimas   =   $pirkinys->apsipirkimas;
+        $budget         =   $pirkinys->apsipirkimas->budget;      
+        $pirkinys->delete();
+        return redirect()->route('apsipirkimas.show', ['apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user'=>$user]);
     }
 }

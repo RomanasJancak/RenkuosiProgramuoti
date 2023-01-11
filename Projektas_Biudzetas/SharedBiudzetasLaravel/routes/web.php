@@ -52,19 +52,18 @@ Route::group(['prefix' => 'pirkiniai'], function(){
     Route::get('', [App\Http\Controllers\PirkinysController::class, 'index'])->name('pirkinys.index');
     Route::get('create/{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'create'])->name('pirkinys.create');
     Route::post('store/{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'store'])->name('pirkinys.store');
-    // Route::get('edit/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'edit'])->name('apsipirkimas.edit');
-    // Route::post('update/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'update'])->name('apsipirkimas.update');
-    // Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy');
-    // Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show');
+    Route::get('edit/{pirkinys},{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'edit'])->name('pirkinys.edit');
+    Route::post('update/{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'update'])->name('pirkinys.update');
+    Route::post('delete/{pirkinys},{user}', [App\Http\Controllers\PirkinysController::class, 'destroy'])->name('pirkinys.destroy');
+    Route::get('show/{pirkinys},{apsipirkimas},{budget},{user}', [App\Http\Controllers\PirkinysController::class, 'show'])->name('pirkinys.show');
  });
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
     Route::get('create/{category}', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
     Route::post('store/{category}', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
     Route::post('store_withoutParent/', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store_withoutParent');
-
-    // Route::get('edit/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'edit'])->name('apsipirkimas.edit');
-    // Route::post('update/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'update'])->name('apsipirkimas.update');
+    Route::get('edit/{category}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('update/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
     // Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy');
     // Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show');
  }); 

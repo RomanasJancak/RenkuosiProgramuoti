@@ -49,7 +49,11 @@
                 <!-- masyva kuri gavome is duomenu bazes  -->
                 <?php foreach($departments as $department) { ?>
                         <option value="<?php echo $department["department_id"] ?>"><?php echo $department["department_name"] ?></option>
-                <?php } ?>
+                        
+                        <?php } ?>
+                        <option value="test">test1</option>
+                        <option value="test">test1</option>
+                        <option value="test">test1</option>
         </select>
     </div>        
     <div class="form-group">

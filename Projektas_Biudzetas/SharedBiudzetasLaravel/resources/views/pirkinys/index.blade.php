@@ -34,7 +34,7 @@
             <td>{{$pirkinys->price}}</td>
             <td>{{$pirkinys->deposit}}</td>
             <td>{{$pirkinys->sum}}</td>
-            <!-- <td><a href="{{route('apsipirkimas.show',[$apsipirkimas,$budget,$user])}}">More...</a></td> -->
+            <td><a href="{{route('pirkinys.show',[$pirkinys,$apsipirkimas,$budget,$user])}}">More...</a></td>
         </tr>
         @endforeach
     </tbody>

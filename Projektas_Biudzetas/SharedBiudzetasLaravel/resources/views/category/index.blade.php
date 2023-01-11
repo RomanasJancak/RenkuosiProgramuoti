@@ -26,81 +26,80 @@
         </tr>
     </thead>
     <tbody>
+        <!-- &#9998 piestukas &#10133- pliusas -->
         @foreach ($categories as $category1)
-            @if($category1->parent_id == 0)
-            
+            @if($category1->parent_id == 0)            
                 @if($category1->childs->isEmpty()) 
-                <tr>
-                    <td>{{$category1->name}} <form method="get" action="{{route('category.create',$category1)}}">@csrf<input type="submit" value="Prideti"></form></td>
+                <tr>                                                                                    
+                    <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
                 </tr>
                 @else                                      
                     @foreach ($category1->childs as $category2)
                         @if($category2->childs->isEmpty())                                       
                             <tr>
-                                <td>{{$category1->name}}</td>
-                                <td>{{$category2->name}}<form method="get" action="{{route('category.create',$category2)}}">@csrf<input type="submit" value="Prideti"></form></td>
+                            <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                            <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
                             </tr>
                         @else
                             @foreach ($category2->childs as $category3)
                                 @if($category3->childs->isEmpty())    
                                     <tr>
-                                        <td>{{$category1->name}}</td>
-                                        <td>{{$category2->name}}</td>
-                                        <td>{{$category3->name}}<form method="get" action="{{route('category.create',$category3)}}">@csrf<input type="submit" value="Prideti"></form></td>
+                                    <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                    <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                    <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>    
                                     </tr>
                                 @else
                                     @foreach ($category3->childs as $category4)
                                         @if($category4->childs->isEmpty())    
-                                            <tr>
-                                            <td>{{$category1->name}}</td>
-                                            <td>{{$category2->name}}</td>
-                                            <td>{{$category3->name}}</td>
-                                            <td>{{$category4->name}}<form method="get" action="{{route('category.create',$category4)}}">@csrf<input type="submit" value="Prideti"></form></td>
-                                            </tr>
+                                        <tr>
+                                            <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                            <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                            <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>    
+                                            <td>{{$category4->name}}<a href="{{route('category.edit',$category4)}}">&#9998</a><a href="{{route('category.create',$category4)}}">&#x2B</a></td>          
+                                        </tr>
                                         @else
                                             @foreach ($category4->childs as $category5)
                                                 @if($category5->childs->isEmpty())    
                                                     <tr>
-                                                        <td>{{$category1->name}}</td>
-                                                        <td>{{$category2->name}}</td>
-                                                        <td>{{$category3->name}}</td>
-                                                        <td>{{$category4->name}}</td>
-                                                        <td>{{$category5->name}}<form method="get" action="{{route('category.create',$category5)}}">@csrf<input type="submit" value="Prideti"></form></td>
-                                                    </tr>
+                                                    <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                                    <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                                    <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>
+                                                    <td>{{$category4->name}}<a href="{{route('category.edit',$category4)}}">&#9998</a><a href="{{route('category.create',$category4)}}">&#x2B</a></td>
+                                                    <td>{{$category5->name}}<a href="{{route('category.edit',$category5)}}">&#9998</a><a href="{{route('category.create',$category5)}}">&#x2B</a></td>
                                                 @else
                                                     @foreach ($category5->childs as $category6)
                                                         @if($category6->childs->isEmpty())    
                                                             <tr>
-                                                                <td>{{$category1->name}}</td>
-                                                                <td>{{$category2->name}}</td>
-                                                                <td>{{$category3->name}}</td>
-                                                                <td>{{$category4->name}}</td>
-                                                                <td>{{$category5->name}}</td>
-                                                                <td>{{$category6->name}}<form method="get" action="{{route('category.create',$category6)}}">@csrf<input type="submit" value="Prideti"></form></td>
+                                                                <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                                                <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                                                <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>
+                                                                <td>{{$category4->name}}<a href="{{route('category.edit',$category4)}}">&#9998</a><a href="{{route('category.create',$category4)}}">&#x2B</a></td>
+                                                                <td>{{$category5->name}}<a href="{{route('category.edit',$category5)}}">&#9998</a><a href="{{route('category.create',$category5)}}">&#x2B</a></td>
+                                                                <td>{{$category6->name}}<a href="{{route('category.edit',$category6)}}">&#9998</a><a href="{{route('category.create',$category6)}}">&#x2B</a></td>
                                                             </tr>
                                                         @else
                                                             @foreach ($category6->childs as $category7)
                                                                 @if($category7->childs->isEmpty())    
                                                                     <tr>
-                                                                        <td>{{$category1->name}}</td>
-                                                                        <td>{{$category2->name}}</td>
-                                                                        <td>{{$category3->name}}</td>
-                                                                        <td>{{$category4->name}}</td>
-                                                                        <td>{{$category5->name}}</td>
-                                                                        <td>{{$category6->name}}</td>
-                                                                        <td>{{$category7->name}}<form method="get" action="{{route('category.create',$category7)}}">@csrf<input type="submit" value="Prideti"></form></td>
+                                                                    <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                                                    <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                                                    <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>
+                                                                    <td>{{$category4->name}}<a href="{{route('category.edit',$category4)}}">&#9998</a><a href="{{route('category.create',$category4)}}">&#x2B</a></td>
+                                                                    <td>{{$category5->name}}<a href="{{route('category.edit',$category5)}}">&#9998</a><a href="{{route('category.create',$category5)}}">&#x2B</a></td>
+                                                                    <td>{{$category6->name}}<a href="{{route('category.edit',$category6)}}">&#9998</a><a href="{{route('category.create',$category6)}}">&#x2B</a></td>
+                                                                    <td>{{$category7->name}}<a href="{{route('category.edit',$category7)}}">&#9998</a><a href="{{route('category.create',$category7)}}">&#x2B</a></td>
                                                                     </tr>
                                                                 @else
                                                                     @foreach ($category7->childs as $category8)    
                                                                         <tr>
-                                                                            <td>{{$category1->name}}</td>
-                                                                            <td>{{$category2->name}}</td>
-                                                                            <td>{{$category3->name}}</td>
-                                                                            <td>{{$category4->name}}</td>
-                                                                            <td>{{$category5->name}}</td>
-                                                                            <td>{{$category6->name}}</td>
-                                                                            <td>{{$category7->name}}</td>
-                                                                            <td>{{$category8->name}}</td>
+                                                                        <td>{{$category1->name}}<a href="{{route('category.edit',$category1)}}">&#9998</a><a href="{{route('category.create',$category1)}}">&#x2B</a></td>
+                                                                        <td>{{$category2->name}}<a href="{{route('category.edit',$category2)}}">&#9998</a><a href="{{route('category.create',$category2)}}">&#x2B</a></td>
+                                                                        <td>{{$category3->name}}<a href="{{route('category.edit',$category3)}}">&#9998</a><a href="{{route('category.create',$category3)}}">&#x2B</a></td>
+                                                                        <td>{{$category4->name}}<a href="{{route('category.edit',$category4)}}">&#9998</a><a href="{{route('category.create',$category4)}}">&#x2B</a></td>
+                                                                        <td>{{$category5->name}}<a href="{{route('category.edit',$category5)}}">&#9998</a><a href="{{route('category.create',$category5)}}">&#x2B</a></td>
+                                                                        <td>{{$category6->name}}<a href="{{route('category.edit',$category6)}}">&#9998</a><a href="{{route('category.create',$category6)}}">&#x2B</a></td>
+                                                                        <td>{{$category7->name}}<a href="{{route('category.edit',$category7)}}">&#9998</a><a href="{{route('category.create',$category7)}}">&#x2B</a></td>
+                                                                        <td>{{$category8->name}}<a href="{{route('category.edit',$category8)}}">&#9998</a><a href="{{route('category.create',$category8)}}">&#x2B</a></td>
                                                                         </tr>
                                                                     @endforeach    
                                                                 @endif

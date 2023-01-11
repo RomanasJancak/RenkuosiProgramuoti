@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('aprasymas');
             //Foreign keys
-            $table->unsignedBigInteger('kategorija')->nullable();
+            $table->unsignedBigInteger('category_id')->constrained();
             //References
-            $table->foreign('kategorija')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

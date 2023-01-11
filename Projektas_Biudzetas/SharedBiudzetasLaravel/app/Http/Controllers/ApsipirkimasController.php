@@ -64,7 +64,7 @@ class ApsipirkimasController extends Controller
     //(Budget $budget,User $user)
     {
         //
-        return view('apsipirkimas.show', ['budget' => $budget,'apsipirkimas'=>$apsipirkimas,'user'=>$user]);
+        return view('apsipirkimas.show', ['apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user'=>$user]);
     }
 
     /**
