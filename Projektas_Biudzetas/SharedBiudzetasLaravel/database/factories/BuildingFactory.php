@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Flat>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Building>
  */
-class FlatFactory extends Factory
+class BuildingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class FlatFactory extends Factory
     public function definition()
     {
         return [
-            'number' => fake()->numberBetween()
+            //
         ];
     }
 }

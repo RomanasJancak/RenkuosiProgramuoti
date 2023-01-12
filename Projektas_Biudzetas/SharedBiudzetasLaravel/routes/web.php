@@ -67,4 +67,18 @@ Route::group(['prefix' => 'categories'], function(){
     // Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy');
     // Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show');
  }); 
-   
+Route::group(['prefix' => 'flats'], function(){
+    
+});
+Route::group(['prefix' => 'buildings'], function(){
+    
+});
+Route::group(['prefix' => 'streets'], function(){
+    
+});
+Route::group(['prefix' => 'setlements'], function(){
+    
+});
+Route::group(['prefix' => 'countries'], function(){
+    
+});     

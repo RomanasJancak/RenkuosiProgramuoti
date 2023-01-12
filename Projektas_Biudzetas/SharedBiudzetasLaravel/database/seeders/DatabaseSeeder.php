@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Apsipirkimas::factory($apsipirkimasFactor)->create();
         \App\Models\Prekepaslauga::factory($pirkinysFactor)->create();
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();
+        \App\Models\Flat::factory(50)->create();
         
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

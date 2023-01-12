@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('flats', function (Blueprint $table) {
+        Schema::create('buildings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('number');
-            //
-            $table->unsignedBigInteger('building_id')->nullable();
-            //
-            $table->foreign('building_id')->references('id')->on('buildings');
+            $table->unsignedBigInteger('street_id')->nullable();
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flats');
+        Schema::dropIfExists('buildings');
     }
 };
