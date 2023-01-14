@@ -8,6 +8,7 @@
         <caption>Apsipirkimas</caption>
         <tr>
             <th>ID</th>
+            <th>Vendor</th>
             <th>Created</th>
             <th>Updated</th>
             <th>Suma</th>
@@ -17,6 +18,7 @@
         </tr>
         <tr >
             <td>{{$apsipirkimas->id}}</td>
+            <td>{{$apsipirkimas->vendor->name}}</td>
             <td>{{$apsipirkimas->created_at}}</td>
             <td>{{$apsipirkimas->updated_at}}</td>     
             <td>{{$apsipirkimas->suma}}</td>

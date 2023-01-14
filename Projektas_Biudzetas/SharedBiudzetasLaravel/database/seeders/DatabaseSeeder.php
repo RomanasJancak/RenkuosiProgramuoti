@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $kat->createWithFake(100);
         \App\Models\Budget::factory()->count($budgetfactor)->create();
         \App\Models\UserBudget::factory($relation_userBudgetFactor)->create();
+        \App\Models\Vendor::factory(5)->create();
         \App\Models\Apsipirkimas::factory($apsipirkimasFactor)->create();
         \App\Models\Prekepaslauga::factory($pirkinysFactor)->create();
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();

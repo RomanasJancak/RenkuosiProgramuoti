@@ -44,7 +44,7 @@ class ApsipirkimasController extends Controller
         //
         //dd($request);
         $apsipirkimas = new Apsipirkimas;
-        $apsipirkimas->shop_id = $request->shop_id;
+        $apsipirkimas->vendor_id = $request->vendor_id;
         $apsipirkimas->suma = $request->suma;
         $apsipirkimas->shop_time = $request->shop_time;
         $apsipirkimas->budget_id = $budget;
@@ -89,7 +89,7 @@ class ApsipirkimasController extends Controller
     public function update(UpdateapsipirkimasRequest $request, Apsipirkimas $apsipirkimas,Budget $budget,User $user)
     {
         //
-        $apsipirkimas->shop_id = $request->shop_id;
+        $apsipirkimas->vendor_id = $request->vendor_id;
         $apsipirkimas->suma = $request->suma;
         $apsipirkimas->shop_time = $request->shop_time;
         $apsipirkimas->save();      

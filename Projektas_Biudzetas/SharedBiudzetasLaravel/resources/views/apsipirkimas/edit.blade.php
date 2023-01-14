@@ -9,8 +9,13 @@
        <fieldset>
             <legend>Apsipirkimo redagavimo forma</legend>
             <p>
-            <label for="shop_id">Apsipirkimo vietos pavadinimas [temp ID]:</label>
-            <input type="text" name="shop_id" id="shop_id" value="{{$apsipirkimas->shop_id}}">            
+            <label for="vendor_id">Apsipirkimo vietos pavadinimas:</label>
+            <input list="vendors" name="vendor_id" id="vendor_id" value="{{$apsipirkimas->vendor->id}}">
+            <datalist id="vendors">
+                @foreach(App\Models\Vendor::all() as $vendor)
+                <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                @endforeach
+            </datalist>            
             </p>
             <p>
             <label for="suma">Išleista suma centais :</label>

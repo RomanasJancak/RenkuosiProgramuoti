@@ -17,7 +17,7 @@ class ApsipirkimasFactory extends Factory
     public function definition()
     {
         return [
-            'shop_id'   => fake()->numberBetween(),
+            'vendor_id'   => \App\Models\Vendor::all()->random()->id,
             'suma'      => fake()->numberBetween(),
             'shop_time' => fake()->date('Y_m_d').' '.fake()->time('H_i_s'),
             'budget_id'=> \App\Models\Budget::all()->random()->id

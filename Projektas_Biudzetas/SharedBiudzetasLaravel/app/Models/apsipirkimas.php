@@ -17,4 +17,8 @@ class Apsipirkimas extends Model
     {
         return $this->hasMany(Pirkinys::class);
     }
+    public function vendor()
+    {
+        return $this->belongsTO(Vendor::class);
+    }
 }
