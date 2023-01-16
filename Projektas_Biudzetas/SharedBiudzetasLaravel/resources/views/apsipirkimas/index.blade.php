@@ -10,7 +10,6 @@
             <th>Vendor</th>
             <th>Created</th>
             <th>Updated</th>
-            <th>Shop</th>
             <th>Suma</th>
             <th>Shop time</th>
             <th>Budget</th>
@@ -22,7 +21,6 @@
             <td>{{$apsipirkimas->vendor->name}}</td>
             <td>{{$apsipirkimas->created_at}}</td>
             <td>{{$apsipirkimas->updated_at}}</td>
-            <td>{{$apsipirkimas->shop_id}}</td>
             <td>{{$apsipirkimas->suma}}</td>
             <td>{{$apsipirkimas->shop_time}}</td>
             <td>{{$apsipirkimas->budget_id}}</td>

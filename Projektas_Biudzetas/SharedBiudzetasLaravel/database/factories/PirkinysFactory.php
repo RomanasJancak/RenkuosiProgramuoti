@@ -19,13 +19,17 @@ class PirkinysFactory extends Factory
         $price  =   fake()->numberBetween(0,1000);
         $quantity   =   fake()->numberBetween(1,3);
         $deposit    =   fake()->numberBetween(10,25);
+        $sum        =   $quantity*($price+$deposit);
+        $apsipirkimas   =   \App\Models\Apsipirkimas::all()->random();
+        $apsipirkimas->suma +=  $sum;
+        $apsipirkimas->update();
         return [
-            'price'   => $price,
-            'quantity'      => $quantity,
-            'deposit' => $deposit,
-            'sum'=> $quantity*($price+$deposit),
-            'prekepaslauga_id'=> \App\Models\Prekepaslauga::all()->random()->id,
-            'apsipirkimas_id'=> \App\Models\Apsipirkimas::all()->random()->id
+            'price'             => $price,
+            'quantity'          => $quantity,
+            'deposit'           => $deposit,
+            'sum'               => $sum,
+            'prekepaslauga_id'  => \App\Models\Prekepaslauga::all()->random()->id,
+            'apsipirkimas_id'   => $apsipirkimas->id
         ];
     }
 }

@@ -18,7 +18,7 @@ class ApsipirkimasFactory extends Factory
     {
         return [
             'vendor_id'   => \App\Models\Vendor::all()->random()->id,
-            'suma'      => fake()->numberBetween(),
+            'suma'      => 0,
             'shop_time' => fake()->date('Y_m_d').' '.fake()->time('H_i_s'),
             'budget_id'=> \App\Models\Budget::all()->random()->id
         ];
