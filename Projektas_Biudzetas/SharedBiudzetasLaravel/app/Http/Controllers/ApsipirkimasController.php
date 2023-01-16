@@ -45,7 +45,7 @@ class ApsipirkimasController extends Controller
         //dd($request);
         $apsipirkimas = new Apsipirkimas;
         $apsipirkimas->vendor_id = $request->vendor_id;
-        $apsipirkimas->suma = $request->suma;
+        $apsipirkimas->suma = 0;
         $apsipirkimas->shop_time = $request->shop_time;
         $apsipirkimas->budget_id = $budget;
         $apsipirkimas->save();
@@ -90,11 +90,14 @@ class ApsipirkimasController extends Controller
     {
         //
         $apsipirkimas->vendor_id = $request->vendor_id;
-        $apsipirkimas->suma = $request->suma;
         $apsipirkimas->shop_time = $request->shop_time;
         $apsipirkimas->save();      
                 
         return redirect()->route('apsipirkimas.show',[$apsipirkimas,$budget,$user]);
+    }
+    public function update_suma(Apsipirkimas $apsipirkimas,$suma)
+    {
+        $apsipirkimas->suma +=$suma;
     }
 
     /**

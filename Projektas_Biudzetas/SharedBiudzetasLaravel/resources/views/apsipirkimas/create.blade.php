@@ -15,10 +15,6 @@
             </datalist>             
             </p>
             <p>
-            <label for="suma">Išleista suma centais :</label>
-            <input type="text" name="suma" id="suma">            
-            </p>
-            <p>
             <label for="shop_time">Apsipirkimo data :</label>
             <input type="datetime-local" step="1" name="shop_time" id="shop_time">            
             </p>

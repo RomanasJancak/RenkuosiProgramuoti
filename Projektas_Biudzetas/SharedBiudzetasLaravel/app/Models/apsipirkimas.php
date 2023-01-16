@@ -21,4 +21,5 @@ class Apsipirkimas extends Model
     {
         return $this->belongsTO(Vendor::class);
     }
+
 }
