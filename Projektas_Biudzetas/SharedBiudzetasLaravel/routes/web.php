@@ -66,7 +66,20 @@ Route::group(['prefix' => 'categories'], function(){
     Route::post('update/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
     // Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy');
     // Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show');
- }); 
+ });
+Route::group(['prefix' => 'roles'], function(){
+});
+Route::group(['prefix' => 'permission'], function(){
+}); 
+Route::group(['prefix' => 'vendors'], function(){
+    Route::get('', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor.index');
+    // 
+    Route::post('store/', [App\Http\Controllers\VendorController::class, 'store'])->name('vendor.store'); 
+    // 
+    Route::post('update/{vendor}', [App\Http\Controllers\VendorController::class, 'update'])->name('vendor.update');  
+    Route::post('delete/{vendor}', [App\Http\Controllers\VendorController::class, 'destroy'])->name('vendor.destroy');
+    // 
+}); 
 Route::group(['prefix' => 'flats'], function(){
     
 });

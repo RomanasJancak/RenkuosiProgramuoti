@@ -15,7 +15,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        $vendors = Vendor::all();
+        return view('vendor.index', ['vendors' => $vendors]);
     }
 
     /**
@@ -36,7 +37,14 @@ class VendorController extends Controller
      */
     public function store(StoreVendorRequest $request)
     {
-        //
+        $vendor             =   new Vendor;
+        $vendor->name       =   $request->name;
+        $vendor->ChainName  =   $request->ChainName;
+        $vendor->adress     =   $request->adress;
+        $vendor->code       =   $request->code;
+        $vendor->vatcode    =   $request->vatcode;
+        $vendor->save();                    
+        return redirect()->route('vendor.index',[]);
     }
 
     /**
@@ -70,7 +78,13 @@ class VendorController extends Controller
      */
     public function update(UpdateVendorRequest $request, Vendor $vendor)
     {
-        //
+        $vendor->name       =   $request->name;
+        $vendor->ChainName  =   $request->ChainName;
+        $vendor->adress     =   $request->adress;
+        $vendor->code       =   $request->code;
+        $vendor->vatcode    =   $request->vatcode;
+        $vendor->save();                    
+        return redirect()->route('vendor.index',[]);
     }
 
     /**
@@ -81,6 +95,11 @@ class VendorController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-        //
+        if($vendor->apsipirkimai->count()){
+            return redirect()->route('vendor.index')->with('info_message', 'Trinti negalima, nes turi Apsipirkimų.');
+        }
+        $vendor->delete();
+        return redirect()->route('vendor.index')->with('success_message', ' Sekmingai ištrintas.');
+    
     }
 }
