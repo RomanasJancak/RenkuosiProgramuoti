@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            UserSeeder::class
+        ]);
         $number = 3;
         $budgetfactor = 2*$number;
         $relation_userBudgetFactor = 2*$budgetfactor;
@@ -21,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $pirkinysFactor = 5*$apsipirkimasFactor;
         $categoryFactor = 10;
         \App\Models\User::factory($number)->create();
-        //\App\Models\Budget::factory(10)->create();
         \App\Models\Category::factory($categoryFactor)->create();
         $kat = new Category();
         $kat->createWithFake(100);
@@ -33,9 +37,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();
         \App\Models\Flat::factory(50)->create();
         
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
     }
 }

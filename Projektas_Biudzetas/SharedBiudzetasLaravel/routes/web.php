@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,14 +24,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::group(['prefix' => 'users'], function(){
-    Route::get('', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+    Route::get('', [UserController::class, 'index'])->name('user.index')->middleware('auth');
+    //Route::get('', [App\Http\Controllers\UserController::class, 'index'])->name('user.index')->midleware('auth');
     //Route::get('create', [App\Http\Controllers\BudgetController::class, 'create'])->name('budget.create');
     //Route::post('store', [App\Http\Controllers\BudgetController::class, 'store'])->name('budget.store');
-    Route::get('edit/{user}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
-    Route::post('update/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-    Route::get('delete/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
-    Route::get('show/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+    Route::get('edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('update/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::get('delete/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('show/{user}', [UserController::class, 'show'])->name('user.show');
 });
 
 Route::group(['prefix' => 'budgets'], function(){
@@ -69,7 +75,14 @@ Route::group(['prefix' => 'categories'], function(){
  });
 Route::group(['prefix' => 'roles'], function(){
 });
-Route::group(['prefix' => 'permission'], function(){
+Route::group(['prefix' => 'permissions'], function(){
+    Route::get  ('/',                       [PermissionController::class, 'index'])->name('permission.index');
+    Route::get  ('/create',                 [PermissionController::class, 'create'])->name('permission.create');
+    Route::post ('/store',                  [PermissionController::class, 'store'])->name('permission.store');
+    Route::get  ('/edit/{id}',      [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post ('/update/{id}',    [PermissionController::class, 'update'])->name('permission.update');
+    Route::post ('/destroy/{id}',   [PermissionController::class, 'destroy'])->name('permission.destroy');
+    Route::get  ('/show/{id}',      [PermissionController::class, 'show'])->name('permission.show');
 }); 
 Route::group(['prefix' => 'vendors'], function(){
     Route::get('', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor.index');
