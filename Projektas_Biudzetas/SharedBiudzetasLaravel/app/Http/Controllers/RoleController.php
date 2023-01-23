@@ -12,7 +12,10 @@ class RoleController extends Controller
 
     public function __construct()
     {
-
+        $this->middleware('permission:role-view',   ['only' => ['index']]);
+        $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        $this->middleware('permission:role-edit',   ['only' => ['edit','update']]);
+        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
     }
 
 
@@ -25,7 +28,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles  =   Role::all();
-        return  view('roles.index', ['roles' => $roles]);
+        return  view('role.index', ['roles' => $roles]);
     }
 
     /**
@@ -35,7 +38,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $role   =   new Role();
+        $permissions    =   Permission::all();
+        return view('role.create', ['permissions'    =>  $permissions]);
     }
 
     /**
@@ -46,7 +50,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role       =   new Role;
+        $role->name =   $request->name;
+        $role->save();
+
+        $role->syncPermissions($request->permissions); // visa checkbox sąraša.
+        
+        return redirect()->route('role.index');
     }
 
     /**
@@ -57,7 +67,10 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = $role->permissions;
+        
+        return view('role.show', ['role' => $role, 'permissions' => $permissions]);
     }
 
     /**
@@ -68,7 +81,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = Permission::all();
+        return view('role.edit', ['role' => $role, 'permissions' => $permissions]);
     }
 
     /**
@@ -80,7 +95,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+        $role->name = $request->name;
+        $role->save();
+        //syncpermissions prie roles pirkabina teises
+        $role->syncPermissions($request->permissions); //visa checkboxu(pazymetu reiksmiu sarasa);
+
+        return redirect()->route('role.index');
     }
 
     /**
@@ -91,6 +112,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+        return redirect()->route('role.index');
     }
 }

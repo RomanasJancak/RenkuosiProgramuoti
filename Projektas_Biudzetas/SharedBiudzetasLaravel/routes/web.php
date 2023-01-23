@@ -74,11 +74,18 @@ Route::group(['prefix' => 'categories'], function(){
     // Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show');
  });
 Route::group(['prefix' => 'roles'], function(){
+    Route::get  ('/',               [RoleController::class, 'index'])->name('role.index');
+    Route::get  ('/create',         [RoleController::class, 'create'])->name('role.create');
+    Route::post ('/store',          [RoleController::class, 'store'])->name('role.store');
+    Route::get  ('/edit/{id}',      [RoleController::class, 'edit'])->name('role.edit');
+    Route::post ('/update/{id}',    [RoleController::class, 'update'])->name('role.update');
+    Route::post ('/destroy/{id}',   [RoleController::class, 'destroy'])->name('role.destroy');
+    Route::get  ('/show/{id}',      [RoleController::class, 'show'])->name('role.show');    
 });
 Route::group(['prefix' => 'permissions'], function(){
-    Route::get  ('/',                       [PermissionController::class, 'index'])->name('permission.index');
-    Route::get  ('/create',                 [PermissionController::class, 'create'])->name('permission.create');
-    Route::post ('/store',                  [PermissionController::class, 'store'])->name('permission.store');
+    Route::get  ('/',               [PermissionController::class, 'index'])->name('permission.index');
+    Route::get  ('/create',         [PermissionController::class, 'create'])->name('permission.create');
+    Route::post ('/store',          [PermissionController::class, 'store'])->name('permission.store');
     Route::get  ('/edit/{id}',      [PermissionController::class, 'edit'])->name('permission.edit');
     Route::post ('/update/{id}',    [PermissionController::class, 'update'])->name('permission.update');
     Route::post ('/destroy/{id}',   [PermissionController::class, 'destroy'])->name('permission.destroy');
