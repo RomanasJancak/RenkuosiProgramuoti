@@ -108,7 +108,7 @@ function changeColor(newColor) {
     elem.style.color = newColor;
 };
 
-
+/*
 document.getElementById ("redbutton").addEventListener ("click", function(){
     var doc =   document.getElementById ("pirkiniu_sarasas")
     var tag_tr  =   document.createElement("tr");
@@ -149,9 +149,18 @@ document.getElementById ("redbutton").addEventListener ("click", function(){
     doc.appendChild(tag_tr);    
 
 });
+
+
 document.getElementById ("bluebutton").addEventListener ("click", function(){
 changeColor('blue')
 });
+
+*/
+// 
+$(document).ready(function(){
+    $(".alert").slideDown(300).delay(5000).slideUp(300);
+});
+
 $(document).ready(function(){
     //------
     //var form = '#add-user-form';

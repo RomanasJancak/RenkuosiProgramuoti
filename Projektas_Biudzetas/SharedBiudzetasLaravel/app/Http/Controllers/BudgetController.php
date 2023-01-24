@@ -50,7 +50,7 @@ class BudgetController extends Controller
         //dd($request->user_id);        
         $budget->users()->attach($user);
                 
-        return redirect()->route('user.show',$user);
+        return redirect()->route('user.show',$user)->withSuccess(__('Budget created successfully.'));
     }
 
     /**

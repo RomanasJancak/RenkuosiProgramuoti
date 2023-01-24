@@ -9,6 +9,7 @@
   <th>Email verified at</th>
   <th>Created</th>
   <th>Updated</th>
+  <th>Roles</th>
   <th>Show</th>
   </tr>
 @foreach ($users as $user)
@@ -19,6 +20,12 @@
     <td>{{$user->email_verified_at}}</td>
     <td>{{$user->created_at}}</td>
     <td>{{$user->updated_at}}</td>
+    <td>
+      
+      @foreach($user->getRoleNames() as $rolename)
+        {{$rolename.' '}}
+      @endforeach
+    </td>
     <td><a href="{{route('user.show',$user)}}">More...</a></td>
   </tr>
 @endforeach

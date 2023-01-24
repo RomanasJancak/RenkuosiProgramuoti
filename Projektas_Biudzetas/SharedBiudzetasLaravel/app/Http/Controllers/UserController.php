@@ -3,14 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+use App\Models\ExtendedRole;
+
 class UserController extends Controller
 {
+    public function __construct()
+    { 
+        $this->middleware('permission:user-view',   ['only' => ['index']]);
+        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-edit',   ['only' => ['edit','update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
+
+
+
     //
     // PRITAIKYTI USERIUI NUKOPIJUOTA IS BUDGET Controllerio
     //
@@ -23,7 +40,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
         $users = User::all();
         return view('user.index', ['users' => $users]);
     }
@@ -35,7 +51,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles  =   Role::all();
+        return view('user.create',['roles' => $roles]);
     }
 
     /**
@@ -46,7 +63,13 @@ class UserController extends Controller
      */
     public function store(StoreBudgetRequest $request)
     {
-        //
+        $user           =   new User;
+        $user->name     =   $request->name;
+        $user->email    =   $request->email;
+        $user->password =   Hash::make($request->password);
+        $user->save();
+
+        $user->assignRole($request->role);
     }
 
     /**
@@ -57,8 +80,16 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
-        return view('user.show', ['user' => $user]);
+        $exRole = new ExtendedRole;
+        dd($exRole->test());
+        dd(auth()->user()->roles());
+
+        if(auth()->user()==$user){
+            return view('user.show', ['user' => $user]);
+        }else{
+            $user = auth()->user();
+            return redirect()->route('user.show', ['user' => $user])->withError(__('Cannot access that user.'));
+        }
     }
 
     /**
