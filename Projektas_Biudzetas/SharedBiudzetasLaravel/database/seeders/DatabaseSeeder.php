@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Prekepaslauga::factory($pirkinysFactor)->create();
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();
         \App\Models\Flat::factory(50)->create();
+
+
         
 
     }

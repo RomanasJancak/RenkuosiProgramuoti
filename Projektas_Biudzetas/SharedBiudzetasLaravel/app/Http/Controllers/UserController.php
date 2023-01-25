@@ -11,10 +11,9 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-use App\Models\ExtendedRole;
 
 class UserController extends Controller
 {
@@ -80,16 +79,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $exRole = new ExtendedRole;
-        dd($exRole->test());
-        dd(auth()->user()->roles());
-
-        if(auth()->user()==$user){
+        //*
+        if((auth()->user()->id==$user->id)||(auth()->user()->isRoleBelow($user))){
             return view('user.show', ['user' => $user]);
         }else{
             $user = auth()->user();
             return redirect()->route('user.show', ['user' => $user])->withError(__('Cannot access that user.'));
         }
+        //*/
     }
 
     /**

@@ -50,4 +50,30 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Budget::class,'user_budgets');
     }
+    /**
+     * Patikrina ar perduodamo modelio bent viena role yra žemiau bent vienos vartotojos esamo modelio
+     */
+    public function isRoleBelow($childUser){
+        $p_roles    =   $this->roles;
+        $c_roles    =   $childUser->roles;
+        foreach($p_roles as $p_role){
+            foreach($c_roles as $c_role){
+                while($c_role->parent != null){
+                    if($c_role->parent->name == $p_role->name){
+                        return true;
+                    }
+                    $c_role =   $c_role->parent;
+                }
+            }
+        }
+        return false;
+    }
+    public function console_log($output, $with_script_tags = true) {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+       ');';
+       if ($with_script_tags) {
+       $js_code = '<script>' . $js_code . '</script>';
+       }
+       echo $js_code;
+       }
 }

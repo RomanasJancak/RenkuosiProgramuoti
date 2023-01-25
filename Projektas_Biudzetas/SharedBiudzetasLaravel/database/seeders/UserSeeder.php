@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -29,9 +29,10 @@ class UserSeeder extends Seeder
 
          $role = Role::find(1);
          
-         $permission = Permission::pluck('id','id')->all();
-         $role->syncPermissions($permission);
-         $user->assignRole($role->id);
+         //$permission = Permission::pluck('id','id')->all();
+         $permissions = Permission::all();
+         $role->syncPermissions($permissions);
+         $user->assignRole($role);
          //sideti teises ir roles i rysio lenetel
          // prie roles SAdmin priskirti visas teises ir role priskirti prie sio konkretaus vartotojo
     }
