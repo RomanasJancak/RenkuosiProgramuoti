@@ -39,5 +39,3 @@
         @endforeach
     </tbody>
 </table>
-<button id='bluebutton'>blue</button>
-<button id='redbutton'>red</button>

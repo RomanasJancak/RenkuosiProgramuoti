@@ -12,7 +12,7 @@
                 <input class="form-control" type="text" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="name" placeholder="Users name">
+                <input class="form-control" type="password" name="password" placeholder="Password">
             </div>
             <div class="form-group">
                 <label> Roles</label><br>

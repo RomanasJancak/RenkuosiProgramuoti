@@ -39,7 +39,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        //(auth()->user()->isRoleBelow(auth()->user()));
+        $usersAll = User::all();
+        $users = collect();
+        $users->push(auth()->user());
+        foreach($usersAll as $userAll){
+            if((auth()->user()->isRoleBelow($userAll))){
+                $users->push($userAll);
+            }
+        }        
         return view('user.index', ['users' => $users]);
     }
 
@@ -50,7 +58,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles  =   Role::all();
+        $rolesAll   =   Role::all();
+        $roles      =   collect();
+        foreach(auth()->user()->roles as $role){
+            foreach($rolesAll as $roleAll){
+                if($role->isRoleBelow($roleAll)){
+                    $roles->push($roleAll);
+                }
+            }
+        }
         return view('user.create',['roles' => $roles]);
     }
 
@@ -60,7 +76,7 @@ class UserController extends Controller
      * @param  \App\Http\Requests\StoreBudgetRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBudgetRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $user           =   new User;
         $user->name     =   $request->name;
@@ -69,6 +85,7 @@ class UserController extends Controller
         $user->save();
 
         $user->assignRole($request->role);
+        return redirect()->route('user.index')->withSuccess(__('User Created Successfully.'));
     }
 
     /**
@@ -97,8 +114,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
-        return view('user.edit', ['user' => $user]);
+        if((auth()->user()->id==$user->id)||(auth()->user()->isRoleBelow($user))){
+            return view('user.edit', ['user' => $user]);
+        }else{
+            $user = auth()->user();
+            return redirect()->route('user.show', ['user' => $user])->withError(__('Cannot access that user.'));
+        }
+        //return view('user.edit', ['user' => $user]);
     }
 
     /**

@@ -18,6 +18,16 @@ class Role extends SpatieRole
     {
         return $this->belongsTo(Role::class,'parent_id');
     }
+    public function isRoleBelow($role)
+    {
+        $c_role = $role;
+        while($c_role->parent != null){
+            if($c_role->parent->name == $this->name){
+                return true;
+            }
+            $c_role =   $c_role->parent;
+        }
+    }
     public function console_log($output, $with_script_tags = true) {
         $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
        ');';

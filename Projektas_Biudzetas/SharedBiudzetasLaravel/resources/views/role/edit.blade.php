@@ -21,7 +21,7 @@
                     </label><br>
                 @endforeach
             </div>    
-            <button type="submit" class="btn btn-primary">Create Role</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
         </div>
     </form>
 </div>

@@ -31,3 +31,8 @@
     @include('budget.index', ['budgets' => $user->budgets])
 </div>
 @endsection
+@section('side')
+<div>
+    ŠIT
+</div>
+@endsection
