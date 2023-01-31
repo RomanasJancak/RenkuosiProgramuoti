@@ -33,7 +33,7 @@ class PermissionSeeder extends Seeder
             'budget-create-viewer',
             'budget-edit-owner',
             'budget-edit-editor',
-            'budget-edit-viewe',
+            'budget-edit-viewer',
             'budget-delete-owner',
             'budget-delete-editor',
             'budget-delete-viewer',

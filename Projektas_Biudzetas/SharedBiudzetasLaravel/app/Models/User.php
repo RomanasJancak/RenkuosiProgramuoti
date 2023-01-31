@@ -48,7 +48,7 @@ class User extends Authenticatable
     ];
     public function budgets()
     {
-        return $this->belongsToMany(Budget::class,'user_budgets');
+        return $this->belongsToMany(Budget::class,'user_budgets')->withPivot('role_id');
     }
     /**
      * Patikrina ar perduodamo modelio bent viena role yra žemiau bent vienos vartotojos esamo modelio

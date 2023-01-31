@@ -16,7 +16,12 @@ class Budget extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsToMany(User::class,'user_budgets');
+        return $this->belongsToMany(User::class,'user_budgets')->withPivot('role_id');
+    }
+    public function getOwner(){
+        foreach($this->users as $user){
+
+        }
     }
     public function apsipirkimai()
     {

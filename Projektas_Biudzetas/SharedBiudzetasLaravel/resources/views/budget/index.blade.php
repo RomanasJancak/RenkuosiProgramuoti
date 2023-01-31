@@ -1,6 +1,7 @@
 <table class="table table-striped caption-top">
     <caption>Biudžetai</caption>
     <tr>
+        
         <th>ID</th>
         <th>Name</th>
         <th>Created</th>

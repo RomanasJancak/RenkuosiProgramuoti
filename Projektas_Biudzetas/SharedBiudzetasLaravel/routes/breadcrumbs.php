@@ -47,3 +47,9 @@ Breadcrumbs::for('apsipirkimas.show', function (BreadcrumbTrail $trail,$apsipirk
     $trail->parent('budget.show',$budget,$user);
     $trail->push('apsipirkimas', route('apsipirkimas.show', ['apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user' => $user]));
 });
+Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail): void {
+    $trail->push('Roles', route('role.index'));
+});
+Breadcrumbs::for('role.edit', function (BreadcrumbTrail $trail,$role): void {
+    $trail->push('Editing', route('role.index',['role'=>$role]));
+});

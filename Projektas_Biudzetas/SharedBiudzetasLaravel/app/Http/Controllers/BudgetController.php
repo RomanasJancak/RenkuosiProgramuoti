@@ -9,6 +9,21 @@ use App\Http\Requests\UpdateBudgetRequest;
 
 class BudgetController extends Controller
 {
+    public function __construct()
+    { 
+        $this->middleware('permission:budget-view-owner',   ['only' => ['index']]);
+        $this->middleware('permission:budget-view-editor',  ['only' => ['index']]);
+        $this->middleware('permission:budget-view-viewer',  ['only' => ['index']]);
+        $this->middleware('permission:budget-create-owner', ['only' => ['create','store']]);
+        $this->middleware('permission:budget-create-editor',['only' => ['create','store']]);
+        $this->middleware('permission:budget-create-viewer',['only' => ['create','store']]);
+        $this->middleware('permission:budget-edit-owner',   ['only' => ['edit','update']]);
+        $this->middleware('permission:budget-edit-editor',  ['only' => ['edit','update']]);
+        $this->middleware('permission:budget-edit-viewer',  ['only' => ['edit','update']]);
+        $this->middleware('permission:budget-delete-owner', ['only' => ['destroy']]);
+        $this->middleware('permission:budget-delete-editor',['only' => ['destroy']]);
+        $this->middleware('permission:budget-delete-viewer',['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
