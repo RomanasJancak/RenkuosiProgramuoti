@@ -17,7 +17,7 @@
     <td>
       
       @foreach($user->getRoleNames() as $rolename)
-        {{$rolename.' '}}
+        {{$rolename.' , '}}
       @endforeach
     </td>
     <td><a href="{{route('user.show',$user)}}">More...</a></td>

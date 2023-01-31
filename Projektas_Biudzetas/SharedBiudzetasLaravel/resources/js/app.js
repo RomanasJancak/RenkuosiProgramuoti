@@ -118,7 +118,7 @@ changeColor('blue')
 $(document).ready(function(){
     $(".alert").slideDown(300).delay(5000).slideUp(300);
 });
-$(document).ready(function(){
-    $(".card").slideDown(300).delay(5000).slideUp(300);
-});
+// $(document).ready(function(){
+//     $(".card").slideDown(300).delay(5000).slideUp(300);
+// });
 
