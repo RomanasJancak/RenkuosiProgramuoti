@@ -39,7 +39,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //(auth()->user()->isRoleBelow(auth()->user()));
+        foreach(auth()->user()->roles as $role){
+            if($role->parent_id == null){
+                return view('user.index', ['users' => User::all()]);
+            }
+        }
         $usersAll = User::all();
         $users = collect();
         $users->push(auth()->user());

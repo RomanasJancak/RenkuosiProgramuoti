@@ -95,7 +95,8 @@ class BudgetController extends Controller
         $budget->save();
         //dd($request->user_id);        
                 
-        return view('budget.show', ['budget'=>$budget,'user' => $user]);
+        //return view('budget.show', ['budget'=>$budget,'user' => $user]);
+        return redirect()->route('budget.show', ['budget'=>$budget,'user' => $user]);
     }
 
     /**

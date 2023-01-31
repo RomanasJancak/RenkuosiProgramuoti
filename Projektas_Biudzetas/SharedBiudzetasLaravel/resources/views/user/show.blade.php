@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+
+    @can('user-view')
     <div>
-        <h6><a href="{{route('user.index')}}">Back</a></h6>
-    </div>    
+        <h6><a href="{{route('user.index')}}">Back </a></h6>
+        {{ Breadcrumbs::render() }}
+    </div>
+    @endcan    
     <table class="table table-striped caption-top">
         <caption>Vartotojas</caption>
         <tr>

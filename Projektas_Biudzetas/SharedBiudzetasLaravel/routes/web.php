@@ -19,7 +19,13 @@ use App\Http\Controllers\RoleController;
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('home');
+    if(auth()->user() == null){
+        return view('welcome');
+    }else{
+        return view('user.show', ['user' => auth()->user()]);
+    }
+    //return view('home');
+    //return view('user.show', ['user' => auth()->user()]);
 });
 
 Auth::routes();

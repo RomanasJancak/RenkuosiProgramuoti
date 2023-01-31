@@ -18,8 +18,10 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('budget_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('role_id');
             $table->foreign('budget_id')->references('id')->on('budgets');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

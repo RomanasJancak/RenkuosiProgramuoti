@@ -15,7 +15,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite([ 'resources/sass/app.scss',
+            'resources/js/app.js',
+            'resources/js/views/vendor.js'])
+
 </head>
 <body>
     
@@ -54,7 +57,6 @@
     </div>
 @endif
     <div id="app">
- 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -109,10 +111,15 @@
                 </div>
             </div>
         </nav>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <div >
+                    {{ Breadcrumbs::render() }}
+                </div>
+            </div>
+        </nav>
 
-        <main 
-        class="py-4"
-        >
+        <main class="py-4">
             @yield('test')
             @yield('content')
         </main>
