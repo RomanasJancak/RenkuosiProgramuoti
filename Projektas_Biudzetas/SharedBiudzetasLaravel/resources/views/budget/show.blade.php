@@ -29,6 +29,7 @@
             <td><a href="{{route('budget.destroy',[$budget,$user])}}">Delete budget</a></td>
         </tr>
     </table>
+    <!--  -->
     <table class="table table-striped caption-top">
         <caption>Users</caption>
         <thead>
@@ -40,16 +41,18 @@
         </thead>
         <tbody>
             @foreach($budget->users as $useris)
-              
+                @foreach($useris->roles as $role)              
             <tr>
                 <td>{{$useris->id}}</td>
                 <td>{{$useris->name}}</td>
                 <td>{{App\Models\Role::find($useris->pivot->role_id)->name}}</td>
+                <td>{{$role->name}}</td>
             </tr>
-            {{-- dd(App\Models\Role::find($useris->pivot->role_id)) --}} 
+                @endforeach
             @endforeach
         </tbody>
     </table>
+    <!--  -->
     @include('apsipirkimas.index', ['apsipirkimai' => $budget->apsipirkimai])
 </div>
 @endsection

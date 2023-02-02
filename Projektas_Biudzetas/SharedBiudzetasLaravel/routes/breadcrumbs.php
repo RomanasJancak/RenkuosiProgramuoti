@@ -53,3 +53,6 @@ Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail): void {
 Breadcrumbs::for('role.edit', function (BreadcrumbTrail $trail,$role): void {
     $trail->push('Editing', route('role.index',['role'=>$role]));
 });
+Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail): void {
+    $trail->push('Vendors', route('vendor.index'));
+});
