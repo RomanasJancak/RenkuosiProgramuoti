@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Friend;
+use App\Models\Friendship;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FriendPolicy
+class FriendshipPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class FriendPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Friend $friend)
+    public function view(User $user, Friendship $friend)
     {
         //
     }
@@ -48,10 +48,10 @@ class FriendPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Friend $friend)
+    public function update(User $user, Friendship $friend)
     {
         //
     }
@@ -60,10 +60,10 @@ class FriendPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Friend $friend)
+    public function delete(User $user, Friendship $friend)
     {
         //
     }
@@ -72,10 +72,10 @@ class FriendPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Friend $friend)
+    public function restore(User $user, Friendship $friend)
     {
         //
     }
@@ -84,10 +84,10 @@ class FriendPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Friend $friend)
+    public function forceDelete(User $user, Friendship $friend)
     {
         //
     }

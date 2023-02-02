@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\FriendshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,4 +121,7 @@ Route::group(['prefix' => 'setlements'], function(){
 });
 Route::group(['prefix' => 'countries'], function(){
     
-});     
+});
+Route::group(['prefix' => 'friendships'], function(){
+    Route::post ('/store',          [FriendshipController::class, 'store'])->name('friend.store')->middleware('auth');    
+});    

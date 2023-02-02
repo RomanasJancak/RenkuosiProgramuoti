@@ -50,6 +50,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Budget::class,'user_budgets')->withPivot('role_id');
     }
+    public function friends()
+    {
+        return $this->hasMany(Friendship::class);
+    }
     /**
      * Patikrina ar perduodamo modelio bent viena role yra žemiau bent vienos vartotojos esamo modelio
      */

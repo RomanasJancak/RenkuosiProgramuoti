@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-<div class="row">
+    <div class="row">
       <div class="col-lg-2"><!-- Kairė pusė-->
         <div class="card mb-4">
           <div class="card-body text-center">
@@ -13,9 +13,11 @@
                     {{$rolename.' '}}
                 @endforeach
             </p>
-            <div class="d-flex justify-content-center mb-1">
-              <button type="button" class="btn btn-primary">Send friend Request</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+            <div class="d-flex justify-content-center">
+              <form method="post" action="">
+                @csrf<button type="button" class="btn btn-primary px-0 py-0">Send friend Request</button>
+              </form>
+              <button type="button" class="btn btn-outline-primary  px-0 py-0 ms-1">Message</button>
             </div>
           </div>
         </div>
@@ -52,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8"><!-- Dešinė pusė-->
+      <div class="col-lg-10"><!-- Dešinė pusė-->
         <div class="card mb-4">
           <div class="card-body">
             <div class="row">
@@ -124,31 +126,5 @@
         </div>
       </div>
     </div>
-
-    <!-- <table class="table table-striped caption-top">
-        <caption>Vartotojas</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Email verified at</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Budgets count</th>
-            <th colspan="2">Actions</th>
-        </tr>
-        <tr>
-            <td>{{$user->id}}</td>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;"></td>
-            <td>{{$user->created_at}}</td>
-            <td>{{$user->updated_at}}</td>
-            <td>{{$user->budgets->count()}}</td>
-            <td><a href="{{route('user.edit',[$user])}}">Edit</a></td>
-            <td><a href="{{route('user.destroy',[$user])}}">Delete account</a></td>
-        </tr>
-    </table> -->
 </div>
 @endsection

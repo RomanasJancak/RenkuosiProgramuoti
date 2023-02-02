@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Prekepaslauga::factory($pirkinysFactor)->create();
         \App\Models\Pirkinys::factory($pirkinysFactor)->create();
         \App\Models\Flat::factory(50)->create();
-
+        $this->call([FriendshipSeeder::class]);
 
         //------DESTYTOJUI ATGAMINTI SITUACIJA-----
          $user2  =   User::find(2);
