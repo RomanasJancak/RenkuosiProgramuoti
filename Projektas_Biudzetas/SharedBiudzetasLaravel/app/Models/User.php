@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+use Illuminate\Support\Facades\DB;
+
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Budget;
 use App\Models\User;
@@ -50,9 +53,23 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Budget::class,'user_budgets')->withPivot('role_id');
     }
-    public function friends()
-    {
-        return $this->hasMany(Friendship::class);
+    public function friends(){
+        return $this->belongsToMany(User::class,'friendships','user_id','friend_id');
+    }
+    public function friendshipRequests(){
+        return $this->belongsToMany(User::class,'friendship_requests','user_id','friend_id');
+    }
+    public function isFriend(User $user){
+        if($this->friends->contains($user)){
+            return true;
+        }
+        return false;
+    }
+    public function hasFriendRequest(User $user){
+        if($this->friendshipRequests->contains($user)){
+            return true;
+        }
+        return false;
     }
     /**
      * Patikrina ar perduodamo modelio bent viena role yra žemiau bent vienos vartotojos esamo modelio

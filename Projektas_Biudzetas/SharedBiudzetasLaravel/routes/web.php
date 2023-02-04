@@ -123,5 +123,5 @@ Route::group(['prefix' => 'countries'], function(){
     
 });
 Route::group(['prefix' => 'friendships'], function(){
-    Route::post ('/store',          [FriendshipController::class, 'store'])->name('friend.store')->middleware('auth');    
+    Route::post ('/store',          [FriendshipController::class, 'store'])->name('friendship.store')->middleware('auth');    
 });    
