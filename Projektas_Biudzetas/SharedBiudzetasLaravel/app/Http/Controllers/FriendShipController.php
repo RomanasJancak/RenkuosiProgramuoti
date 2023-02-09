@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Friend;
-use App\Http\Requests\StoreFriendRequest;
-use App\Http\Requests\UpdateFriendRequest;
+use App\Models\Friendship;
+use App\Http\Requests\StoreFriendshipRequest;
+use App\Http\Requests\UpdateFriendshipRequest;
 
-class FriendController extends Controller
+class FriendshipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,17 @@ class FriendController extends Controller
      */
     public function store(StoreFriendRequest $request)
     {
-        //
+        $friendship             =   new Friendship;
+        $friendship->user_id    =   $request->user_id;
+        $friendship->friend_id  =   $request->friend_id;
+        $friendship->save();
+        $friendship             =   new Friendship;
+        $friendship->user_id    =   $request->friend_id;
+        $friendship->friend_id  =   $request->user_id;
+        $friendship->save();
+
+        return redirect()->route('user.show',$request->friend_id)->withSuccess(__('Friendship created successfully.'));
+    
     }
 
     /**
@@ -56,7 +66,7 @@ class FriendController extends Controller
      * @param  \App\Models\Friendship  $friend
      * @return \Illuminate\Http\Response
      */
-    public function edit(Friend $friendship)
+    public function edit(Friendship $friendship)
     {
         //
     }
@@ -80,7 +90,15 @@ class FriendController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Friendship $friendship)
-    {
-        //
+    {   //dd($friendship);
+        $id =   $friendship->friend_id;
+        //dd($id);
+        $friendshipreverse = Friendship::all()->where('user_id',$friendship->friend_id)->where('friend_id',$friendship->user_id);
+        //dd($friendshipreverse->first());
+        $friendship->delete();
+        $friendshipreverse->first()->delete();
+        //dd($friendshipRequest);
+        return redirect()->route('user.show',$id)->withSuccess(__('Friendship removed'));
+    //
     }
 }

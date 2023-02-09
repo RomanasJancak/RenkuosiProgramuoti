@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use App\Models\FriendshipRequest;
 use App\Http\Requests\StoreFriendshipRequestRequest;
 use App\Http\Requests\UpdateFriendshipRequestRequest;
@@ -15,7 +17,9 @@ class FriendshipRequestController extends Controller
      */
     public function index()
     {
-        //
+        //dd('test');
+        $FriendshipRequests = FriendshipRequest::all();
+        return view('friendshipRequest.index', ['friendshipRequests' => $FriendshipRequests]);
     }
 
     /**
@@ -36,7 +40,12 @@ class FriendshipRequestController extends Controller
      */
     public function store(StoreFriendshipRequestRequest $request)
     {
-        //
+        $friendshipRequest              =   new FriendshipRequest;
+        $friendshipRequest->user_id     =   $request->sender_id;
+        $friendshipRequest->friend_id   =   $request->receiver_id;
+        $friendshipRequest->save();
+
+        return redirect()->route('user.show',$request->receiver_id)->withSuccess(__('Budget created successfully.'));
     }
 
     /**
@@ -45,9 +54,10 @@ class FriendshipRequestController extends Controller
      * @param  \App\Models\FriendshipRequest  $friendshipRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(FriendshipRequest $friendshipRequest)
+    public function show(FriendshipRequest $friendshipRequest,$user)
     {
-        //
+        $user   = User::find($user);
+        return view('friendshiprequest.show', ['user' => $user]);
     }
 
     /**
@@ -79,8 +89,13 @@ class FriendshipRequestController extends Controller
      * @param  \App\Models\FriendshipRequest  $friendshipRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FriendshipRequest $friendshipRequest)
-    {
-        //
+    public function destroy($friendshipRequest)
+    {   //dd($friendshipRequest);
+        $id =   FriendshipRequest::find($friendshipRequest)->friend_id;
+
+        FriendshipRequest::find($friendshipRequest)->delete();
+        //dd($friendshipRequest);
+        return redirect()->route('user.show',$id)->withSuccess(__('Friendship request canceled'));
+
     }
 }

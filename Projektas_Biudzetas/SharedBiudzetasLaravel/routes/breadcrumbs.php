@@ -51,8 +51,19 @@ Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Roles', route('role.index'));
 });
 Breadcrumbs::for('role.edit', function (BreadcrumbTrail $trail,$role): void {
-    $trail->push('Editing', route('role.index',['role'=>$role]));
+    $trail->push('Editing', route('role.edit',['role'=>$role]));
 });
 Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Vendors', route('vendor.index'));
 });
+Breadcrumbs::for('friendship.destroy', function (BreadcrumbTrail $trail): void {
+    $trail->push('friendship', route('friendship.destroy'));});
+Breadcrumbs::for('friendshiprequest.index', function (BreadcrumbTrail $trail): void {
+    $trail->push('friendshipRequests', route('friendshiprequest.index'));});
+Breadcrumbs::for('friendshiprequest.store', function (BreadcrumbTrail $trail): void {
+    $trail->push('friendshipRequests', route('friendshiprequest.store'));});
+Breadcrumbs::for('friendshiprequest.destroy', function (BreadcrumbTrail $trail): void {
+    $trail->push('friendshipRequests', route('friendshiprequest.destroy'));});
+Breadcrumbs::for('friendshiprequest.show', function (BreadcrumbTrail $trail,$user): void {
+    $trail->parent('user.show',$user);
+    $trail->push('Friendships', route('friendshiprequest.show',['user' => $user]));});

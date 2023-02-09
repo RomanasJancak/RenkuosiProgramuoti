@@ -59,17 +59,40 @@ class User extends Authenticatable
     public function friendshipRequests(){
         return $this->belongsToMany(User::class,'friendship_requests','user_id','friend_id');
     }
+    public function friendshipRequestsTo(){
+        return $this->belongsToMany(User::class,'friendship_requests','friend_id','user_id');
+    }
     public function isFriend(User $user){
         if($this->friends->contains($user)){
             return true;
         }
         return false;
     }
-    public function hasFriendRequest(User $user){
+    public function hasFriendRequest(User $user)
+    {
         if($this->friendshipRequests->contains($user)){
             return true;
         }
         return false;
+    }
+    public function getFriendship($friend_id)
+    {
+        foreach(Friendship::all() as $friendship){
+            if(($friendship->friend_id == $friend_id)&&($friendship->user_id == $this->id)){
+                return $friendship;
+            }
+        }
+    }
+    public function getFriendshipRequest($friend_id)
+    {
+        //dump($friend_id);
+        foreach(FriendshipRequest::all() as $friendshipRequest){
+            //dump($friendshipRequest);
+            if(($friendshipRequest->friend_id == $friend_id)&&($friendshipRequest->user_id == $this->id)){
+                //dd('true');
+                return $friendshipRequest;
+            }
+        }
     }
     /**
      * Patikrina ar perduodamo modelio bent viena role yra žemiau bent vienos vartotojos esamo modelio

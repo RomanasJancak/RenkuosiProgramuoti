@@ -39,11 +39,14 @@ class UserController extends Controller
      */
     public function index()
     {
+        //jeigu bent viena role neturi tėvines klasės tai tai yra superadmin ir gali matyti visus userius
         foreach(auth()->user()->roles as $role){
             if($role->parent_id == null){
                 return view('user.index', ['users' => User::all()]);
             }
         }
+        //kitu atveju bus einama per visu vartotojos ir ziurima ar bent viena role iš esamo vartotojo yra aukščiau už
+        // norima atvaizduoti $user role.
         $usersAll = User::all();
         $users = collect();
         $users->push(auth()->user());
@@ -164,5 +167,8 @@ class UserController extends Controller
         $user_name = $user->name;
         $user->delete();
         return redirect()->route('user.index')->with('success_message', 'Vartotojas : '.$user_name.' Sekmingai ištrintas.');
+    }
+    public function notif(){
+
     }
 }

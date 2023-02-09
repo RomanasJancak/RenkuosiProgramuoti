@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FriendshipController;
+use App\Http\Controllers\FriendshipRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,5 +124,12 @@ Route::group(['prefix' => 'countries'], function(){
     
 });
 Route::group(['prefix' => 'friendships'], function(){
-    Route::post ('/store',          [FriendshipController::class, 'store'])->name('friendship.store')->middleware('auth');    
+    Route::post ('/destroy/{friendship}', [FriendshipController::class, 'destroy'])->name('friendship.destroy')->middleware('auth');
+    Route::post ('/store',                [FriendshipController::class, 'store'])->name('friendship.store')->middleware('auth');  
+});
+Route::group(['prefix' => 'friendshiprequests'], function(){
+    Route::get  ('/',                               [FriendshipRequestController::class, 'index'])->name('friendshiprequest.index')->middleware('auth');
+    Route::post ('/store',                          [FriendshipRequestController::class, 'store'])->name('friendshiprequest.store')->middleware('auth');
+    Route::post ('/destroy/{friendshiprequest}',    [FriendshipRequestController::class, 'destroy'])->name('friendshiprequest.destroy')->middleware('auth');
+    Route::get  ('/show/{user}',                    [FriendshipRequestController::class, 'show'])->name('friendshiprequest.show')->middleware('auth');    
 });    

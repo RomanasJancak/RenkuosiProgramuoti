@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="extensions/sticky-header/bootstrap-table-sticky-header.css">
+
     
 
     <!-- Scripts -->
@@ -68,15 +70,37 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li>Link</li>
+                        <li class="nav-item">
+                            @if(auth()->user() !== null)
+                            @if(auth()->user()->friendshipRequestsTo->count() >0 )
+                            <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}"><i class="fas fa-user-friends fa-spin"></i></a>
+                            @else
+                            <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}"><i class="fas fa-user-friends "></i></a>
+                            @endif
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if(auth()->user() !== null)
+                            @if(auth()->user()->friendshipRequestsTo->count() >0 )
+                            <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}">
+                            <i class="fa fa-link fa-spin" aria-hidden="true"></i></a>
+                            @else
+                            <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}">
+                                <i class="fa fa-link" aria-hidden="true" ></i></a>
+                            @endif
+                            @endif
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}"><i class="fa fa-bell"></i></a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -128,5 +152,7 @@
         </main>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+    
 </body>
 </html>
