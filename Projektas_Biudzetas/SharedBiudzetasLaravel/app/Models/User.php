@@ -120,4 +120,9 @@ class User extends Authenticatable
        }
        echo $js_code;
        }
+    public function getPakvietimai(){
+        $pakvietimai = Pakvietimas::all()->
+            where('model_type_with',$this->g)->
+            where('friend_id',$friendship->user_id);
+    }
 }

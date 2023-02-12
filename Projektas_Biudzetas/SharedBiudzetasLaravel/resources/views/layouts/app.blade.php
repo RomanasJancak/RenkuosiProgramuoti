@@ -85,8 +85,8 @@
                         </li>
                         <li class="nav-item">
                             @if(auth()->user() !== null)
-                            @if(auth()->user()->friendshipRequestsTo->count() >0 )
-                            <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}">
+                            @if(App\Models\Pakvietimas::all()->count() >0 )
+                            <a class="nav-link" href="{{ route('pakvietimas.index',[auth()->user()])}}">
                             <i class="fa fa-link fa-spin" aria-hidden="true"></i></a>
                             @else
                             <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}">

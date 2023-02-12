@@ -16,6 +16,10 @@ class Budget extends Model
     {
         return $this->belongsToMany(User::class,'user_budgets')->withPivot('role_id');
     }
+    public function addUser()
+    {
+
+    }
     public function getOwner(){
         foreach($this->users as $user){
 

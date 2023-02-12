@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+{{--  dd(get_class(auth()->user())) --}}
 {{-- dd((auth()->user() == $user)) --}}
 {{-- dump(auth()->user()) --}}
 {{-- dd($user) --}}

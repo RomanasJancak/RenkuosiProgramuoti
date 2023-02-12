@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\FriendshipRequestController;
+use App\Http\Controllers\PakvietimasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,4 +133,9 @@ Route::group(['prefix' => 'friendshiprequests'], function(){
     Route::post ('/store',                          [FriendshipRequestController::class, 'store'])->name('friendshiprequest.store')->middleware('auth');
     Route::post ('/destroy/{friendshiprequest}',    [FriendshipRequestController::class, 'destroy'])->name('friendshiprequest.destroy')->middleware('auth');
     Route::get  ('/show/{user}',                    [FriendshipRequestController::class, 'show'])->name('friendshiprequest.show')->middleware('auth');    
+});
+Route::group(['prefix' => 'pakvietimai'],function(){
+    Route::get  ('/{user}',                 [PakvietimasController::class, 'index'  ])->name('pakvietimas.index'    )->middleware('auth');
+    Route::post ('/destroy/{pakvietimas}',  [PakvietimasController::class, 'destroy'])->name('pakvietimas.destroy'  )->middleware('auth');
+    Route::post ('/store',                  [PakvietimasController::class, 'store'  ])->name('pakvietimas.store'    )->middleware('auth');
 });    

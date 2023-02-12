@@ -2,6 +2,8 @@
 @section('content')
 <div class="container">
   {{-- dd(App\Models\Friendship::all()->where('user_id',2)->where('friend_id',3)) --}}
+  {{-- dd($user->friendshipRequestsTo->count()) --}}
+  @if($user->friendshipRequestsTo->count() > 0)
   <div class="table-responsive">
     <table class="table caption-top">
       <caption>Friendship requests from</caption>
@@ -27,6 +29,8 @@
         </tbody>
     </table>
   </div>
+  @endif
+  @if($user->friendshipRequests->count() > 0)
   <div class="table-responsive">
     <table class="table caption-top">
       <caption>Friendship requests to</caption>
@@ -51,6 +55,8 @@
         </tbody>
     </table>
   </div>
+  @endif
+  @if($user->friends->count() > 0)
   <div class="table-responsive">
     <table class="table caption-top">
       <caption>Friends</caption>
@@ -75,5 +81,6 @@
         </tbody>
     </table>
   </div>
+  @endif
 </div>
 @endsection

@@ -1,8 +1,10 @@
 <table class="table table-striped caption-top">
     <tr>
+        @if(($auth_useris_role->id == '4')||($auth_useris_role->id == '5'))
         <td colspan="4" style="text-align : center">
             <a href="{{route('apsipirkimas.create',[$budget,$user])}}">Add apsipirkimas</a>            
         </td>
+        @endif
     </tr>
         <caption style="text-align:center">Apsipirkimai</caption>
         <tr>

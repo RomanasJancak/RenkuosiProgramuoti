@@ -16,7 +16,7 @@ Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail): void {
     $trail->push('List of users', route('user.index'));
 });
 Breadcrumbs::for('user.show', function (BreadcrumbTrail $trail,$user): void {
-    $trail->parent('home');
+    //$trail->parent('home');
     $trail->push('user', route('user.show', ['user' => $user]));
 });
 Breadcrumbs::for('user.edit', function (BreadcrumbTrail $trail,$user): void {
@@ -47,6 +47,11 @@ Breadcrumbs::for('apsipirkimas.show', function (BreadcrumbTrail $trail,$apsipirk
     $trail->parent('budget.show',$budget,$user);
     $trail->push('apsipirkimas', route('apsipirkimas.show', ['apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user' => $user]));
 });
+Breadcrumbs::for('pirkinys.show', function (BreadcrumbTrail $trail,$pirkinys,$apsipirkimas,$budget,$user): void {
+    $trail->parent('apsipirkimas.show',$apsipirkimas,$budget,$user);
+    $trail->push('pirkinys', route('pirkinys.show', ['pirkinys'=>$pirkinys,'apsipirkimas'=>$apsipirkimas,'budget' => $budget,'user'=>$user]));
+});
+
 Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Roles', route('role.index'));
 });
@@ -67,3 +72,6 @@ Breadcrumbs::for('friendshiprequest.destroy', function (BreadcrumbTrail $trail):
 Breadcrumbs::for('friendshiprequest.show', function (BreadcrumbTrail $trail,$user): void {
     $trail->parent('user.show',$user);
     $trail->push('Friendships', route('friendshiprequest.show',['user' => $user]));});
+Breadcrumbs::for('pakvietimas.index', function (BreadcrumbTrail $trail,$user): void {
+    $trail->parent('user.show',$user);
+    $trail->push('Pakvietimai', route('pakvietimas.index',['user' => $user]));});

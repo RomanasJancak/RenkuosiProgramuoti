@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Budget;
 use App\Models\User;
+use App\Models\Pakvietimas;
 use App\Http\Requests\StoreBudgetRequest;
 use App\Http\Requests\UpdateBudgetRequest;
 
@@ -56,14 +57,15 @@ class BudgetController extends Controller
     public function store(StoreBudgetRequest $request,$user)
     {
         //
-        //dd($request);
+        //dd($user->pivot->role_id);
         $budget = new Budget;
+        //dd($budget);
         $budget->name = $request->budget_name;
         //$budget->users()->save($request->user);
         //$budget->users()->sync([$request->user_id]);
         $budget->save();
         //dd($request->user_id);        
-        $budget->users()->attach($user);
+        $budget->users()->attach($user,['role_id' => 4]);
                 
         return redirect()->route('user.show',$user)->withSuccess(__('Budget created successfully.'));
     }
@@ -101,13 +103,22 @@ class BudgetController extends Controller
      */
     public function update(UpdateBudgetRequest $request, Budget $budget,User $user)
     {
-        //
-                //
-        //dd($request);
+        //dd($request->role_id);
+
+        //dd(Pakvietimas::all());
+        if(isset($request->budget_name)){
         $budget->name = $request->budget_name;
-        //$budget->users()->save($request->user);
-        //$budget->users()->sync([$request->user_id]);
-        $budget->save();
+        }
+        if($budget->users->contains($user)){
+            $budget->save();
+        }else{
+            $budget->save();
+            $budget->users()->attach($user,['role_id' => $request->role_id]);
+        }
+        if(isset($request->pakvietimas_id)){
+            //dd(Pakvietimas::find($request->pakvietimas_id));
+            Pakvietimas::find($request->pakvietimas_id)->delete();
+        }
         //dd($request->user_id);        
                 
         //return view('budget.show', ['budget'=>$budget,'user' => $user]);

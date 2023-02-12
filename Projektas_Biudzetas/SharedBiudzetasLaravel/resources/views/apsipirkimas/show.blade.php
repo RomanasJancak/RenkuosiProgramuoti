@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<?php
+$auth_useris_role = App\Models\Role::find($budget->users->where('id',auth()->user()->id)->first()->pivot->role_id);
+?>
 <div class="container">
     <div>
         <h6><a href="{{route('budget.show',[$budget,$user])}}">Back</a></h6>
@@ -24,8 +27,10 @@
             <td>{{$apsipirkimas->suma}}</td>
             <td>{{$apsipirkimas->shop_id}}</td>
             <td>{{$apsipirkimas->shop_time}}</td>
+            @if(($auth_useris_role->id == '4')||($auth_useris_role->id == '5'))
             <td><a href="{{route('apsipirkimas.edit',[$apsipirkimas,$budget,$user])}}">Edit</a></td>
             <td><a href="{{route('apsipirkimas.destroy',[$apsipirkimas,$budget,$user])}}">Ištrinti apsipirkimą</a></td>
+            @endif
         </tr>
     </table>
     @include('pirkinys.index', ['pirkiniai' => $apsipirkimas->pirkiniai])

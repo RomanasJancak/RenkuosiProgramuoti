@@ -1,10 +1,12 @@
 <table class="table table-striped caption-top" >
     <thead>
+    @if(($auth_useris_role->id == '4')||($auth_useris_role->id == '5'))
     <tr>
         <td colspan="4" style="text-align : center">
             <a href="{{route('pirkinys.create',[$apsipirkimas,$budget,$user])}}">Pridėti pirkinį</a>            
         </td>
     </tr>
+    @endif
         <caption style="text-align:center">Pirkiniai</caption>
         <tr>
             <th>ID</th>
@@ -18,11 +20,13 @@
             <th colspan="3">Actions<th>
         </tr>
     </thead>
+    <!--  
     <form id="naujas_pirkinys">
                 @csrf
                 <input id="search" type="text" name="search" class="form-control" placeholder="search">
                 <button id="seachBtn" class="btn btn-primary" type="Submit">Search</button>
             </form>
+    -->
     <tbody id='pirkiniu_sarasas'>
         @foreach ($pirkiniai as $pirkinys)
         <tr>

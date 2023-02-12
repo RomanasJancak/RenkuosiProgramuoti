@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+<?php $auth_useris = ($budget->users->where('id',auth()->user()->id)->first());
+      $auth_useris_role = App\Models\Role::find($auth_useris->pivot->role_id);
+      $auth_useris_role = App\Models\Role::find($budget->users->where('id',auth()->user()->id)->first()->pivot->role_id);
+?>
 <div class="container">
     <div>
     <h6><a href="{{route('user.show',[$user])}}">Back</a></h6>        
@@ -23,10 +27,12 @@
             {{--dd(auth()->user()->permissions)--}}
 
 
-            @can('budget-edit-editor')
+            @if(($auth_useris_role->id == '4')||($auth_useris_role->id == '5'))
             <td><a href="{{route('budget.edit',[$budget,$user])}}">Edit</a></td>
-            @endcan
+            @endif
+            @if($auth_useris_role->id == '4')
             <td><a href="{{route('budget.destroy',[$budget,$user])}}">Delete budget</a></td>
+            @endif
         </tr>
     </table>
     <!--  -->
@@ -40,15 +46,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($budget->users as $useris)
-                @foreach($useris->roles as $role)              
+            @foreach($budget->users as $useris)             
             <tr>
                 <td>{{$useris->id}}</td>
                 <td>{{$useris->name}}</td>
                 <td>{{App\Models\Role::find($useris->pivot->role_id)->name}}</td>
-                <td>{{$role->name}}</td>
             </tr>
-                @endforeach
             @endforeach
         </tbody>
     </table>
