@@ -12,6 +12,9 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail): void {
 Breadcrumbs::for('login', function (BreadcrumbTrail $trail): void {
     $trail->push('Home', route('user.index'));
 });
+Breadcrumbs::for('register', function (BreadcrumbTrail $trail): void {
+    $trail->push('Home', route('user.index'));
+});
 Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail): void {
     $trail->push('List of users', route('user.index'));
 });
@@ -82,6 +85,6 @@ Breadcrumbs::for('pakvietimas.index', function (BreadcrumbTrail $trail,$user): v
     $trail->parent('user.show',$user);
     $trail->push('Pakvietimai', route('pakvietimas.index',['user' => $user]));
 });
-Breadcrumbs::for('register', function (BreadcrumbTrail $trail): void {
-    $trail->push('Home', route('user.index'));
+Breadcrumbs::for('category.index', function (BreadcrumbTrail $trail): void {
+    $trail->push('List of categories', route('category.index'));
 });

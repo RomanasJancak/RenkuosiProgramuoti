@@ -104,6 +104,16 @@
                             <a href="{{route('budget.index',['budgets' => auth()->user()->budgets])}}" >' Budgets '</a>
                           </li>
                         @endcan
+                        @can(('category-view'))
+                        <li style="display:inline-block;">
+                            <a href="{{route('category.index',['budgets' => auth()->user()->budgets])}}" >' Categories '</a>
+                          </li>
+                        @endcan
+                        @can(('vendor-view'))
+                        <li style="display:inline-block;">
+                            <a href="{{route('vendor.index',['budgets' => auth()->user()->budgets])}}" >' Vendors '</a>
+                          </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -154,7 +164,7 @@
                 <div >
                     <?php
                     try{ 
-                     Breadcrumbs::render();
+                     ?>{{Breadcrumbs::render()}}<?php
                     }catch(Exception $e){
                         echo 'Error';
                     } 
