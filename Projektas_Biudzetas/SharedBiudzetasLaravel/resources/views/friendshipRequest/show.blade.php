@@ -3,6 +3,7 @@
 <div class="container">
   {{-- dd(App\Models\Friendship::all()->where('user_id',2)->where('friend_id',3)) --}}
   {{-- dd($user->friendshipRequestsTo->count()) --}}
+  
   @if($user->friendshipRequestsTo->count() > 0)
   <div class="table-responsive">
     <table class="table caption-top">

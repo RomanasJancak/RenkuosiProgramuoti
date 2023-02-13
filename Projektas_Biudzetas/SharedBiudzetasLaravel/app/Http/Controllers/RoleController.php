@@ -83,7 +83,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $permissions = Permission::all();
-        return view('role.edit', ['role' => $role, 'permissions' => $permissions]);
+        return view('role.edit', ['role' => $role]);
     }
 
     /**

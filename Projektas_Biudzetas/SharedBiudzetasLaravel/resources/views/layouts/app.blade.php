@@ -26,7 +26,7 @@
 
 </head>
 <body>
-    
+{{-- dd(Route::getCurrentRoute()) --}}    
 @if ($errors->any())
     <div class="col-sm-12">
         <div class="alert  alert-warning alert-dismissible fade show" role="alert">
@@ -73,8 +73,8 @@
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+                    <ul class="navbar-nav me-auto" style="display:inline-block;">
+                        <li class="nav-item" style="display:inline-block;">
                             @if(auth()->user() !== null)
                             @if(auth()->user()->friendshipRequestsTo->count() >0 )
                             <a class="nav-link" href="{{ route('friendshiprequest.show',[auth()->user()]) }}"><i class="fas fa-user-friends fa-spin"></i></a>
@@ -83,7 +83,7 @@
                             @endif
                             @endif
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display:inline-block;">
                             @if(auth()->user() !== null)
                             @if(App\Models\Pakvietimas::all()->count() >0 )
                             <a class="nav-link" href="{{ route('pakvietimas.index',[auth()->user()])}}">
@@ -94,6 +94,16 @@
                             @endif
                             @endif
                         </li>
+                        @can('role-view')
+                          <li style="display:inline-block;">
+                            <a href="{{route('role.index')}}" >' Roles '</a>
+                          </li>
+                        @endcan
+                        @can(('budget-view-owner'))
+                        <li style="display:inline-block;">
+                            <a href="{{route('budget.index',['budgets' => auth()->user()->budgets])}}" >' Budgets '</a>
+                          </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -142,7 +152,13 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div >
-                    {{ Breadcrumbs::render() }}
+                    <?php
+                    try{ 
+                     Breadcrumbs::render();
+                    }catch(Exception $e){
+                        echo 'Error';
+                    } 
+                    ?>
                 </div>
             </div>
         </nav>

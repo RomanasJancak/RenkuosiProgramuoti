@@ -21,19 +21,19 @@ use App\Http\Controllers\PakvietimasController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
+    return view('home');
     if(auth()->user() == null){
         return view('welcome');
     }else{
         return view('user.show', ['user' => auth()->user()]);
     }
-    //return view('home');
-    //return view('user.show', ['user' => auth()->user()]);
+
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'users'], function(){
     Route::get('',                  [UserController::class, 'index'])->name('user.index')->middleware('auth');
@@ -137,5 +137,5 @@ Route::group(['prefix' => 'friendshiprequests'], function(){
 Route::group(['prefix' => 'pakvietimai'],function(){
     Route::get  ('/{user}',                 [PakvietimasController::class, 'index'  ])->name('pakvietimas.index'    )->middleware('auth');
     Route::post ('/destroy/{pakvietimas}',  [PakvietimasController::class, 'destroy'])->name('pakvietimas.destroy'  )->middleware('auth');
-    Route::post ('/store',                  [PakvietimasController::class, 'store'  ])->name('pakvietimas.store'    )->middleware('auth');
-});    
+    Route::post ('/store',                  [PakvietimasController::class, 'store'])->name('pakvietimas.store')->middleware('auth');
+});

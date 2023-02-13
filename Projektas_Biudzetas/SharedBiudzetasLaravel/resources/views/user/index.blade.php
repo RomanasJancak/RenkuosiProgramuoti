@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+{{Breadcrumbs::render()}}
 <table class="table table-striped">
   <tr>
   <th>ID</th>

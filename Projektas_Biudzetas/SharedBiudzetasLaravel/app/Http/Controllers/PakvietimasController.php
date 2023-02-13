@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pakvietimas;
+use App\Models\User;
+use App\Models\Ghost;
 use App\Http\Requests\StorePakvietimasRequest;
 use App\Http\Requests\UpdatePakvietimasRequest;
 
@@ -47,7 +49,38 @@ class PakvietimasController extends Controller
      */
     public function store(StorePakvietimasRequest $request)
     {
-        //
+        $model_type_what    =   $request->model_type_what;
+        $model_id_what      =   $request->model_id_what;
+        $model_type_who     =   $request->model_type_who;
+        $model_id_who       =   $request->model_id_who;
+        $role_id            =   $request->role_id;
+        $email              =   $request->email;
+        $user               =   User::all()->where('email',$email)->first();
+        if(isset($user)){
+            $pakvietimas = new Pakvietimas();
+            $pakvietimas->model_type_what   =   $model_type_what;
+            $pakvietimas->model_id_what     =   $model_id_what;
+            $pakvietimas->model_type_who    =   $model_type_who;
+            $pakvietimas->model_id_who      =   $model_id_who;
+            $pakvietimas->role_id           =   $role_id;
+            $pakvietimas->model_type_with   =   get_class($user);
+            $pakvietimas->model_id_with     =   $user->id;
+            $pakvietimas->save();
+        }else{
+            $ghost = new Ghost();
+            $ghost->email = $email;
+            $ghost->save();
+            $pakvietimas = new Pakvietimas();
+            $pakvietimas->model_type_what   =   $model_type_what;
+            $pakvietimas->model_id_what     =   $model_id_what;
+            $pakvietimas->model_type_who    =   $model_type_who;
+            $pakvietimas->model_id_who      =   $model_id_who;
+            $pakvietimas->role_id           =   $role_id;
+            $pakvietimas->model_type_with   =   get_class($ghost);
+            $pakvietimas->model_id_with     =   $ghost->id;
+            $pakvietimas->save();   
+        }
+        return back();
     }
 
     /**
@@ -94,8 +127,8 @@ class PakvietimasController extends Controller
     {
 
         $id =   $pakvietimas->model_id_with;
-        //$pakvietimas->delete();
+        $pakvietimas->delete();
 
-        return redirect()->route('pakvietimas.index',$id)->withSuccess(__('Friendship request canceled'));
+        return redirect()->route('pakvietimas.index',$id)->withSuccess(__('Invitation to share request canceled'));
     }
 }

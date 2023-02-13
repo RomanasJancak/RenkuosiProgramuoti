@@ -16,8 +16,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([  'name'      =>  'superadmin']);//1
-        Role::create([  
+        $SAdmin = Role::create([  'name'      =>  'superadmin']);//1
+        $Moderatorius = Role::create([  
                         'name'      =>  'moderatorius',//2
                         'parent_id' =>  1
                     ]);
@@ -25,15 +25,15 @@ class RoleSeeder extends Seeder
                         'name'      =>  'logedUser',
                         'parent_id' =>  2
                     ]);
-        Role::create([//4
+        $Budget_owner = Role::create([//4
                         'name'      =>  'budget_owner',
                         'parent_id' =>  '1'
                     ]);
-        Role::create([//5
+        $Budget_editor = Role::create([//5
                         'name'      =>  'budget_editor',
                         'parent_id' =>  '4'
                     ]);
-        Role::create([//6
+        $Budget_viewer = Role::create([//6
                         'name'      =>  'budget_viewer',
                         'parent_id' =>  '4'
                     ]);

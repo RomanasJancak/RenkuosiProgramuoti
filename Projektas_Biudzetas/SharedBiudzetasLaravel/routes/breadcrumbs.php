@@ -3,8 +3,8 @@ use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
  
-Breadcrumbs::for(' ', function (BreadcrumbTrail $trail): void {
-    $trail->push('Home', route('home'));
+Breadcrumbs::for('', function (BreadcrumbTrail $trail): void {
+    $trail->push('Home', route('user.index'));
 });
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail): void {
     $trail->push('Home', route('user.index'));
@@ -16,12 +16,15 @@ Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail): void {
     $trail->push('List of users', route('user.index'));
 });
 Breadcrumbs::for('user.show', function (BreadcrumbTrail $trail,$user): void {
-    //$trail->parent('home');
+    $trail->parent('home');
     $trail->push('user', route('user.show', ['user' => $user]));
 });
 Breadcrumbs::for('user.edit', function (BreadcrumbTrail $trail,$user): void {
     $trail->parent('user.show',$user);
     $trail->push('edit', route('user.show', ['user' => $user]));
+});
+Breadcrumbs::for('budget.index', function (BreadcrumbTrail $trail): void {
+    $trail->push('List of budgets', route('budget.index'));
 });
 Breadcrumbs::for('budget.show', function (BreadcrumbTrail $trail,$budget,$user): void {
     $trail->parent('user.show',$user);
@@ -55,8 +58,11 @@ Breadcrumbs::for('pirkinys.show', function (BreadcrumbTrail $trail,$pirkinys,$ap
 Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Roles', route('role.index'));
 });
+Breadcrumbs::for('role.show', function (BreadcrumbTrail $trail,$role): void {
+    $trail->push('Show', route('role.show',['id'=>$role]));
+});
 Breadcrumbs::for('role.edit', function (BreadcrumbTrail $trail,$role): void {
-    $trail->push('Editing', route('role.edit',['role'=>$role]));
+    $trail->push('Editing', route('role.edit',['id'=>$role]));
 });
 Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Vendors', route('vendor.index'));
@@ -74,4 +80,8 @@ Breadcrumbs::for('friendshiprequest.show', function (BreadcrumbTrail $trail,$use
     $trail->push('Friendships', route('friendshiprequest.show',['user' => $user]));});
 Breadcrumbs::for('pakvietimas.index', function (BreadcrumbTrail $trail,$user): void {
     $trail->parent('user.show',$user);
-    $trail->push('Pakvietimai', route('pakvietimas.index',['user' => $user]));});
+    $trail->push('Pakvietimai', route('pakvietimas.index',['user' => $user]));
+});
+Breadcrumbs::for('register', function (BreadcrumbTrail $trail): void {
+    $trail->push('Home', route('user.index'));
+});

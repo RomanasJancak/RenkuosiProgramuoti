@@ -1,11 +1,14 @@
-<table class="table table-striped caption-top">
+@extends('layouts.app')
+@section('content')
+<div class="container">
+{{Breadcrumbs::render()}}
+<?php $user = auth()->user();?>
+<table class="table table-striped caption-top" style="overflow-x:auto;">
     <caption>Biudžetai</caption>
     <tr>
         
         <th>ID</th>
         <th>Name</th>
-        <th>Created</th>
-        <th>Updated</th>
         <th>User count</th>
         <th>Apsipirkimų kiekis</th>
         <th colspan="3">Actions<th>
@@ -14,8 +17,6 @@
     <tr>
         <td>{{$budget->id}}</td>
         <td>{{$budget->name}}</td>
-        <td>{{$budget->created_at}}</td>
-        <td>{{$budget->updated_at}}</td>
         <td>{{$budget->users->count()}}</td>
         <td>{{$budget->apsipirkimai->count()}}</td>
         <td><a href="{{route('budget.show',[$budget,$user])}}">More...</a></td>
@@ -27,3 +28,5 @@
         </td>
     </tr>
 </table>
+</div>
+@endsection

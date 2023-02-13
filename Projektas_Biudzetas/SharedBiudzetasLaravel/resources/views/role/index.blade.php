@@ -25,7 +25,8 @@
                    
 
                     @can('role-edit')
-                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-secondary">Edit</a>
+                        {{$role->id}}
+                        <a href="{{route('role.edit', [$role->id])}}" class="btn btn-secondary">Edit</a>
                     @endcan    
                     <a href="{{route('role.show', $role->id)}}" class="btn btn-success">Show</a>
 

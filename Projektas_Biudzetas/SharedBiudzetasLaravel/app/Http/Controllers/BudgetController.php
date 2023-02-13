@@ -102,12 +102,36 @@ class BudgetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateBudgetRequest $request, Budget $budget,User $user)
-    {
-        //dd($request->role_id);
+    {   
+        if(isset($request->make_owner)){
+            //dd($request->make_owner);
+            $useris =   User::find($request->make_owner);
+            $budget->users()->detach($useris);
+            $budget->users()->attach($useris,['role_id' => 4]);
+            $budget->users()->detach($user);
+            $budget->users()->attach($user,['role_id' => 5]);
+            return redirect()->route('budget.show', ['budget'=>$budget,'user' => $user]);
+        }
+        if(isset($request->change_user_role)){
+            $useris =   User::find($request->change_user);
+            $budget->users()->detach($useris);
+            $budget->users()->attach($useris,['role_id' => $request->change_user_role]);
+            return redirect()->route('budget.show', ['budget'=>$budget,'user' => $user]);
+        }
 
         //dd(Pakvietimas::all());
         if(isset($request->budget_name)){
         $budget->name = $request->budget_name;
+        }
+        if(isset($request->remove_user)){
+            $useris =   User::find($request->remove_user);
+            $budget->users()->detach($useris);
+            if($request->remove_user == $user->id){
+                return view('user.show', ['user' => $user]);
+            }else{
+                return redirect()->route('budget.show', ['budget'=>$budget,'user' => $user]);    
+            }
+            
         }
         if($budget->users->contains($user)){
             $budget->save();

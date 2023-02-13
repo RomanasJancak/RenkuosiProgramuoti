@@ -8,6 +8,7 @@
 {{-- dd('test') --}}
 @endif
 <div class="container">
+  {{Breadcrumbs::render()}}
     <div class="row">
       <div class="col-lg-2"><!-- Kairė pusė-->
         <div class="card mb-4">

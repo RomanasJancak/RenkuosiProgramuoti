@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<?php 
+$permissions = Spatie\Permission\Models\Permission::all();
+?>
 <div class="container">
     <form method="post" action="{{route('role.update', $role->id)}}">
         @csrf
