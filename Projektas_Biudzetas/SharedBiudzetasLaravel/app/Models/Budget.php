@@ -88,7 +88,6 @@ class Budget extends Model
         $sumatext = (($suma-($suma % 100))/100).".".$suma % 100;
         return $sumatext;}
     public function get_Owner(){
-        //App\Models\Role::find($useris->pivot->role_id)->name
         foreach($this->users as $user)
         {
             if(Role::find($user->pivot->role_id)->name == 'budget_owner'){
