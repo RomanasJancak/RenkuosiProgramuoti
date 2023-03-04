@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 //class Budget extends Model
 class Budget extends Model
 {
+    private User $owner;
     use HasFactory;
     public function users()
     {
@@ -20,10 +21,8 @@ class Budget extends Model
     {
 
     }
-    public function getOwner(){
-        foreach($this->users as $user){
+    public function setOwner(User $user){
 
-        }
     }
     public function apsipirkimai()
     {
@@ -95,7 +94,6 @@ class Budget extends Model
             }                           
         }}
     public function get_currentUser_role(){
-        $roleName = "";
         foreach($this->users as $user)
         {
             if(auth()->user()->id == $user->id){
