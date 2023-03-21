@@ -57,7 +57,8 @@ class FriendshipRequestController extends Controller
     public function show(FriendshipRequest $friendshipRequest,$user)
     {
         $user   = User::find($user);
-        return view('friendshiprequest.show', ['user' => $user]);
+        return view('friendshipRequest.show', ['user' => $user]);
+        //return view('permission.show',['permission' =>  $permission]);
     }
 
     /**

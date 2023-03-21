@@ -21,8 +21,7 @@
 
     <!-- Scripts -->
     @vite([ 'resources/sass/app.scss',
-            'resources/js/app.js',
-            'resources/js/views/vendor.js'])
+            'resources/js/app.js'])
 
 </head>
 <body>

@@ -139,3 +139,4 @@ Route::group(['prefix' => 'pakvietimai'],function(){
     Route::post ('/destroy/{pakvietimas}',  [PakvietimasController::class, 'destroy'])->name('pakvietimas.destroy'  )->middleware('auth');
     Route::post ('/store',                  [PakvietimasController::class, 'store'])->name('pakvietimas.store')->middleware('auth');
 });
+?>

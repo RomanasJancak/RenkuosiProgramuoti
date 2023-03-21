@@ -102,3 +102,4 @@ class FriendshipController extends Controller
     //
     }
 }
+?>
