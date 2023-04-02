@@ -16,7 +16,7 @@ class UserBudgetSeeder extends Seeder
      */
     public function run()
     {
-        UserBudget::create(['budget_id' => 1,'user_id'   => 1,'role_id'   => 4   ]);
+        UserBudget::create(['budget_id' => 1,'user_id'   => 1,'role_id'   => 4   ,'primary_flag' => 1]);
         UserBudget::create(['budget_id' => 1,'user_id'   => 2,'role_id'   => 5   ]);
         UserBudget::create(['budget_id' => 1,'user_id'   => 3,'role_id'   => 6   ]);
         UserBudget::create(['budget_id' => 1,'user_id'   => 4,'role_id'   => 6   ]);

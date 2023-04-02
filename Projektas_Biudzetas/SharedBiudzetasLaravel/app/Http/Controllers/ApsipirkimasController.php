@@ -32,7 +32,9 @@ class ApsipirkimasController extends Controller
         //
         return view('apsipirkimas.create', ['budget' => $budget,'user' => $user]);
     }
-
+    public function createToPrimaryBudget(Budget $budget,User $user){
+        return view('apsipirkimas.createToPrimaryBudget', ['budget' => $budget,'user' => $user]);
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -15,7 +15,7 @@ class Budget extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsToMany(User::class,'user_budgets')->withPivot('role_id');
+        return $this->belongsToMany(User::class,'user_budgets')->withPivot(['role_id','primary_flag']);
     }
     public function addUser()
     {

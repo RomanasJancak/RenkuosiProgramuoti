@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_budgets', function (Blueprint $table) {
+        Schema::create('shoping_list_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('budget_id');
+            $table->unsignedBigInteger('shopingList_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('primary_flag')->default('0');
-            $table->foreign('budget_id')->references('id')->on('budgets');
+            $table->foreign('shopingList_id')->references('id')->on('shoping_lists');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('role_id')->references('id')->on('roles');
         });
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_budgets');
+        Schema::dropIfExists('shoping_list_users');
     }
 };

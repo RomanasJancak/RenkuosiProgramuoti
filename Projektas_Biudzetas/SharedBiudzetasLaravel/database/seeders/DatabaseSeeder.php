@@ -45,6 +45,9 @@ class DatabaseSeeder extends Seeder
         $this->call([FriendshipSeeder::class]);
         $this->call([PakvietimasSeeder::class]);
 
+        $this->call([ShopingItemSeeder::class]);
+        $this->call([ShopingListSeeder::class]);
+
         //------DESTYTOJUI ATGAMINTI SITUACIJA-----
          $user2  =   User::find(2);
          $user3  =   User::find(3);

@@ -7,10 +7,12 @@
 @if(auth()->user() == $user)
 {{-- dd('test') --}}
 @endif
+{{-- dd(auth()->user()->getPrimaryBudget()) --}}
 <div class="container">
-  {{Breadcrumbs::render()}}
+
     <div class="row">
       <div class="col-lg-2"><!-- Kairė pusė-->
+      <!-- Vartotojo snukis perkelti i dropdown arba pašalinti : 2023-05-01 deadline
         <div class="card mb-4">
           <div class="card-body text-center">
             <img src="{{asset('images/photos_Profile/default.png')}}" alt="avatar"
@@ -46,6 +48,12 @@
             </div>
           </div>
         </div>
+      -->
+        <div class="card mb-4">
+          <div class="card-body p-0">
+            <a class="btn btn-info" href="{{route('apsipirkimas.createToPrimaryBudget',[auth()->user()->getPrimaryBudget(),$user])}}">Shop</a> 
+          </div>
+        </div>  
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
@@ -80,6 +88,7 @@
         </div>
       </div>
       <div class="col-lg-10"><!-- Dešinė pusė-->
+      <!--
         <div class="card mb-4">
           <div class="card-body">
             <div class="row">
@@ -114,6 +123,7 @@
             </div>
           </div>
         </div>
+      -->  
         <div class="row">
           <div class="accordion" id="accordionExample">
             @foreach($user->budgets as $budget)            

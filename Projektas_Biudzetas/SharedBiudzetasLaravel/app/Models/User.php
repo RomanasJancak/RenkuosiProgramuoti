@@ -51,7 +51,14 @@ class User extends Authenticatable
     ];
     public function budgets()
     {
-        return $this->belongsToMany(Budget::class,'user_budgets')->withPivot('role_id');
+        return $this->belongsToMany(Budget::class,'user_budgets')->withPivot(['role_id','primary_flag']);
+    }
+    public function getPrimaryBudget(){
+        foreach($this->budgets as $budget){
+            if($budget->pivot->primary_flag == 1 ){
+                 return  $budget;  
+            }
+        }
     }
     public function friends(){
         return $this->belongsToMany(User::class,'friendships','user_id','friend_id');

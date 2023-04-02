@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\FriendshipRequestController;
 use App\Http\Controllers\PakvietimasController;
+use App\Http\Controllers\ShopingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,13 +56,14 @@ Route::group(['prefix' => 'budgets'], function(){
     Route::get('show/{budget},{user}', [App\Http\Controllers\BudgetController::class, 'show'])->name('budget.show')->middleware('auth');
   });
 Route::group(['prefix' => 'apsipirkimai'], function(){
-    Route::get('', [App\Http\Controllers\ApsipirkimasController::class, 'index'])->name('apsipirkimas.index')->middleware('auth');
-    Route::get('create/{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'create'])->name('apsipirkimas.create')->middleware('auth');
-    Route::post('store/{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'store'])->name('apsipirkimas.store')->middleware('auth');
-    Route::get('edit/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'edit'])->name('apsipirkimas.edit')->middleware('auth');
-    Route::post('update/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'update'])->name('apsipirkimas.update')->middleware('auth');
-    Route::get('delete/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy')->middleware('auth');
-    Route::get('show/{apsipirkimas},{budget},{user}', [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show')->middleware('auth');
+    Route::get('',                                          [App\Http\Controllers\ApsipirkimasController::class, 'index'])->name('apsipirkimas.index')->middleware('auth');
+    Route::get('create/{budget},{user}',                    [App\Http\Controllers\ApsipirkimasController::class, 'create'])->name('apsipirkimas.create')->middleware('auth');
+    Route::get('createToPrimaryBudget/{budget},{user}',     [App\Http\Controllers\ApsipirkimasController::class, 'createToPrimaryBudget'])->name('apsipirkimas.createToPrimaryBudget')->middleware('auth');    
+    Route::post('store/{budget},{user}',                    [App\Http\Controllers\ApsipirkimasController::class, 'store'])->name('apsipirkimas.store')->middleware('auth');
+    Route::get('edit/{apsipirkimas},{budget},{user}',       [App\Http\Controllers\ApsipirkimasController::class, 'edit'])->name('apsipirkimas.edit')->middleware('auth');
+    Route::post('update/{apsipirkimas},{budget},{user}',    [App\Http\Controllers\ApsipirkimasController::class, 'update'])->name('apsipirkimas.update')->middleware('auth');
+    Route::get('delete/{apsipirkimas},{budget},{user}',     [App\Http\Controllers\ApsipirkimasController::class, 'destroy'])->name('apsipirkimas.destroy')->middleware('auth');
+    Route::get('show/{apsipirkimas},{budget},{user}',       [App\Http\Controllers\ApsipirkimasController::class, 'show'])->name('apsipirkimas.show')->middleware('auth');
  });
 Route::group(['prefix' => 'pirkiniai'], function(){
     Route::get('', [App\Http\Controllers\PirkinysController::class, 'index'])->name('pirkinys.index')->middleware('auth');
@@ -138,5 +140,10 @@ Route::group(['prefix' => 'pakvietimai'],function(){
     Route::get  ('/{user}',                 [PakvietimasController::class, 'index'  ])->name('pakvietimas.index'    )->middleware('auth');
     Route::post ('/destroy/{pakvietimas}',  [PakvietimasController::class, 'destroy'])->name('pakvietimas.destroy'  )->middleware('auth');
     Route::post ('/store',                  [PakvietimasController::class, 'store'])->name('pakvietimas.store')->middleware('auth');
+});
+Route::group(['prefix' => 'shopingLists'],function(){
+    Route::get  ('/',                 [ShopingListController::class, 'index'  ])->name('shopingList.index'    )->middleware('auth');
+    Route::post ('/destroy/{pakvietimas}',  [ShopingListController::class, 'destroy'])->name('shopingList.destroy'  )->middleware('auth');
+    Route::post ('/store',                  [ShopingListController::class, 'store'])->name('shopingList.store')->middleware('auth');
 });
 ?>
