@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
@@ -39,6 +39,9 @@ class UserController extends Controller
      */
     public function index()
     {
+
+
+
         //jeigu bent viena role neturi tėvines klasės tai tai yra superadmin ir gali matyti visus userius
         foreach(auth()->user()->roles as $role){
             if($role->parent_id == null){
