@@ -1,8 +1,0 @@
-Įšoriniai duomenys gaunami : 
-	Rankiniu budu - teises >  moderatorius 
-	PGPK klasifikatorius - teises > moderatorius
-	Gamintojai/Tiekėjai - teises > moderatorius
-	Klientai įvedantis savo paties pavadinimus - [patvirtinimas apdorojimas] iš moderatoriaus
-	
-	
-	
