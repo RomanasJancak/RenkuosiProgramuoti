@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             PermissionSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            CountrySeeder::class
         ]);
         $number = 3;
         $budgetfactor = 2*$number;

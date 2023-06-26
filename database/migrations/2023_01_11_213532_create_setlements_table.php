@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('setlements', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('country_id');
             $table->timestamps();
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

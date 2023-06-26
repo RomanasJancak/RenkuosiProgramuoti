@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Http\Requests\StoreapsipirkimasRequest;
 use App\Http\Requests\UpdateapsipirkimasRequest;
 
+use App\Models\Country;
+use App\Models\Vendor;
+
 class ApsipirkimasController extends Controller
 {
     /**
@@ -33,7 +36,13 @@ class ApsipirkimasController extends Controller
         return view('apsipirkimas.create', ['budget' => $budget,'user' => $user]);
     }
     public function createToPrimaryBudget(Budget $budget,User $user){
-        return view('apsipirkimas.createToPrimaryBudget', ['budget' => $budget,'user' => $user]);
+        $vendors = Vendor::all();
+        $countries = Country::all();
+        return view('apsipirkimas.createToPrimaryBudget', [ 'budget' => $budget,
+                                                            'user' => $user,
+                                                            'countries' => $countries,
+                                                            'vendors' => $vendors
+                                                        ]);
     }
     /**
      * Store a newly created resource in storage.
