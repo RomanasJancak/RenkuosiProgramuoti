@@ -8,6 +8,10 @@
 {{-- dd('test') --}}
 @endif
 {{-- dd(auth()->user()->getPrimaryBudget()) --}}
+<?php echo 'test';
+
+
+?>
 <div class="container">
 
     <div class="row">
